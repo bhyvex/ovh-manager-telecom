@@ -7296,9 +7296,9 @@ ovh-angular-user-pref@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/ovh-angular-user-pref/-/ovh-angular-user-pref-0.3.1.tgz#07f5792513651f3262ae4879c174423649b08307"
 
-ovh-api-services@^3.0.0:
+ovh-api-services@ovh-ux/ovh-api-services#feat/add-xdsl-emailpro:
   version "3.9.1"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.9.1.tgz#f35a559affe7248c7deb76326594b39cddc90a6f"
+  resolved "https://codeload.github.com/ovh-ux/ovh-api-services/tar.gz/9b4b27d278fbee58374b80d330e632cc3561ff75"
   dependencies:
     grunt-injector "^0.6.0"
 
