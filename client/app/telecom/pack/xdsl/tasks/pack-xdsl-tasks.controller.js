@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('XdslTasksCtrl', function ($scope, $stateParams, $translate, $q, PAGINATION_PER_PAGE, OvhApiXdsl, Toast) {
+  .controller('XdslTasksCtrl', function ($scope, $stateParams, $translate, OvhApiXdsl, Toast, PAGINATION_PER_PAGE) {
     const self = this;
 
     self.loaders = {
@@ -14,9 +14,7 @@ angular.module('managerApp')
     };
 
     self.$onInit = function () {
-      $q.all([
-        self.getTasks(),
-      ]);
+      self.getTasks();
     };
 
     self.getTasks = function () {
@@ -30,9 +28,9 @@ angular.module('managerApp')
       );
     };
 
-    self.transformItem = function (row) {
+    self.transformItem = function (id) {
       return OvhApiXdsl.v6()
-        .getTask({ xdslId: $stateParams.serviceName, taskId: row.id }).$promise.then(
+        .getTask({ xdslId: $stateParams.serviceName, taskId: id }).$promise.then(
           task => task,
           (error) => {
             Toast.error([$translate.instant('an_error_occured'), error.data.message].join(' '));
