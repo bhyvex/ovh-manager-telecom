@@ -9483,9 +9483,9 @@ ovh-angular-user-pref@^0.3.1:
   integrity sha1-B/V5JRNlHzJirkh5wXRCNkmwgwc=
 
 ovh-api-services@^3.13.0:
-  version "3.16.0"
-  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.16.0.tgz#30c83e1176d36db5218d3435cc8e9818b6abe63d"
-  integrity sha512-RFCX/GLZzMylFhvpy3O42LgrupvdK1XZJwxpU92sXj65xC+X5WJHscI01cuScT4Cr7e1HzzryuAaI2YTe0gjUA==
+  version "3.16.2"
+  resolved "https://registry.yarnpkg.com/ovh-api-services/-/ovh-api-services-3.16.2.tgz#02b541c059e732b12fabda6d9ae6a7b51107f413"
+  integrity sha512-Mc/bbByKs2Mvnlu9Gc3ZGFQytX0anPd2ADMOmU2dTMPsLxh1Ixc0J5UnLz+eSIEVWSWWbTdrindeYoTh24Q+MQ==
   dependencies:
     grunt-injector "^0.6.0"
 

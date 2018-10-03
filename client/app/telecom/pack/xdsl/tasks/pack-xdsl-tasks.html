@@ -9,7 +9,7 @@
                 data-translate="xdsl_tasks_list">
             </h2>
 
-            <oui-datagrid data-rows="XdslTasks.taskIds" data-row-loader="XdslTasks.transformItem($row.id)">
+            <oui-datagrid data-rows="$ctrl.taskIds" data-row-loader="$ctrl.transformItem($row.id)">
                 <oui-column data-title="::'xdsl_tasks_name' | translate" data-property="function" data-sortable="asc"></oui-column>
                 <oui-column data-title="::'xdsl_tasks_id' | translate" data-property="id" data-sortable></oui-column>
                 <oui-column data-title="::'xdsl_tasks_status' | translate" data-property="status" data-sortable>

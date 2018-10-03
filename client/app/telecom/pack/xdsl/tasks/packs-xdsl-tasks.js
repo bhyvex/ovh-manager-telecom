@@ -5,7 +5,7 @@ angular.module('managerApp').config(($stateProvider) => {
       'xdslView@telecom.pack.xdsl': {
         templateUrl: 'app/telecom/pack/xdsl/tasks/pack-xdsl-tasks.html',
         controller: 'XdslTasksCtrl',
-        controllerAs: 'XdslTasks',
+        controllerAs: '$ctrl',
       },
     },
     translations: ['.'],
