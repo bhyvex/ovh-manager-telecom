@@ -16,7 +16,7 @@
                     <span class="label"
                           data-ng-class="{
                                 'label-success': $row.status === 'done',
-                                'label-danger': $row.status === 'error' || 'problem',
+                                'label-danger': ['error', 'problem'].indexOf($row.status) !== -1,
                                 'label-info': $row.status === 'doing',
                                 'label-primary': $row.status === 'todo'
                             }">
