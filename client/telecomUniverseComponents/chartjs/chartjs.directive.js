@@ -1,14 +1,17 @@
-angular.module('managerApp').directive('chartjs', Chart => ({
+
+import template from './chartjs.html';
+
+export default /* @ngInject */ Chart => ({
   restrict: 'A',
   scope: {
-    chartjs: '=?',
+    tucChartjs: '=?',
   },
   bindToController: true,
   controllerAs: '$ctrl',
-  templateUrl: 'components/chartjs/chartjs.html',
+  template,
   link(scope, element, attrs, controller) {
     const canvas = element.children().get(0);
-    canvas.id = _.uniqueId('chartjs');
+    canvas.id = _.uniqueId('tucChartjs');
     _.set(controller, 'ctx', canvas.getContext('2d'));
   },
   controller: function directiveController($scope) {
@@ -18,11 +21,11 @@ angular.module('managerApp').directive('chartjs', Chart => ({
       if (this.chartInstance) {
         this.chartInstance.destroy();
       }
-      this.chartInstance = new Chart(this.ctx, data || this.chartjs);
+      this.chartInstance = new Chart(this.ctx, data || this.tucChartjs);
     };
 
     this.$onInit = function () {
-      $scope.$watch('$ctrl.chartjs', (data) => {
+      $scope.$watch('$ctrl.tucChartjs', (data) => {
         if (data) {
           self.createChart(data);
         }
@@ -35,4 +38,4 @@ angular.module('managerApp').directive('chartjs', Chart => ({
       });
     };
   },
-}));
+});
