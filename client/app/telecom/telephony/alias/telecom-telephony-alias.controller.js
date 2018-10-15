@@ -51,7 +51,9 @@ angular.module('managerApp').controller('TelecomTelephonyAliasCtrl', class Telec
     }).catch((error) => {
       this.Toast.error([this.$translate.instant('telephony_alias_load_error'), _.get(error, 'data.message').join(' ')]);
     }).finally(() => {
-      this.$state.go('telecom.telephony.alias.dashboard');
+      if (_(this.$state.current.name).isEqual('telecom.telephony.alias')) {
+        this.$state.go('telecom.telephony.alias.dashboard');
+      }
       this.loading = false;
     });
   }
