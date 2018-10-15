@@ -1,5 +1,9 @@
 import angular from 'angular';
 
+import tucUiSortableHelpers from './uiSortableHelpers';
+
 export default angular
-  .module('telecomUniverseComponents', [])
+  .module('telecomUniverseComponents', [
+    tucUiSortableHelpers,
+  ])
   .name;
