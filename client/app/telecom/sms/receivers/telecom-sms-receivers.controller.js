@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsReceiversCtrl', class TelecomSmsReceiversCtrl {
     constructor(
       $scope, $stateParams, $q, $filter, $uibModal, $translate, $timeout,
-      OvhApiSms, CSVParser, Toast, ToastError, URLS,
+      OvhApiSms, CSVParser, TucToast, ToastError, URLS,
     ) {
       this.$filter = $filter;
       this.$q = $q;
@@ -19,7 +19,7 @@ angular
         },
       };
       this.CSVParser = CSVParser;
-      this.Toast = Toast;
+      this.TucToast = TucToast;
       this.ToastError = ToastError;
       this.constant = { URLS };
     }
@@ -156,7 +156,7 @@ angular
       });
       modal.result.then(() => this.refresh(), (error) => {
         if (error && error.type === 'API') {
-          this.Toast.error(this.$translate.instant('sms_receivers_add_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+          this.TucToast.error(this.$translate.instant('sms_receivers_add_receiver_ko', { error: _.get(error, 'msg.data.message') }));
         }
       });
     }
@@ -175,7 +175,7 @@ angular
       });
       modal.result.then(() => this.refresh(), (error) => {
         if (error && error.type === 'API') {
-          this.Toast.error(this.$translate.instant('sms_receivers_edit_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+          this.TucToast.error(this.$translate.instant('sms_receivers_edit_receiver_ko', { error: _.get(error, 'msg.data.message') }));
         }
       });
     }
@@ -230,7 +230,7 @@ angular
         return response;
       }).catch((error) => {
         if (error && error.type === 'API') {
-          this.Toast.error(this.$translate.instant('sms_receivers_clean_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+          this.TucToast.error(this.$translate.instant('sms_receivers_clean_receiver_ko', { error: _.get(error, 'msg.data.message') }));
         }
       });
       return modal;
@@ -252,7 +252,7 @@ angular
           this.csv.data = this.CSVParser.parse(csv.data);
         } catch (err) {
           this.csv.data = null;
-          this.Toast.error(this.$translate.instant('sms_receivers_read_receiver_parse_ko', { error: _.get(err, 'msg.data.message') }));
+          this.TucToast.error(this.$translate.instant('sms_receivers_read_receiver_parse_ko', { error: _.get(err, 'msg.data.message') }));
         }
         return this.csv.data;
       }).catch((err) => {
@@ -287,7 +287,7 @@ angular
       });
       modal.result.then(() => this.refresh(), (error) => {
         if (error && error.type === 'API') {
-          this.Toast.error(this.$translate.instant('sms_receivers_remove_receiver_ko', { error: _.get(error, 'msg.data.message') }));
+          this.TucToast.error(this.$translate.instant('sms_receivers_remove_receiver_ko', { error: _.get(error, 'msg.data.message') }));
         }
       });
     }
@@ -304,7 +304,7 @@ angular
       }).$promise);
       this.receivers.isDeleting = true;
       queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-      this.Toast.info(this.$translate.instant('sms_receivers_delete_receivers_success'));
+      this.TucToast.info(this.$translate.instant('sms_receivers_delete_receivers_success'));
       return this.$q.all(queries).then(() => {
         this.receivers.selected = {};
         return this.refresh();

@@ -17,7 +17,7 @@ angular.module('managerApp').component('telecomTelephonyCallsFilteringTable', {
   templateUrl: 'components/telecom/telephony/callsFiltering/telecom-telephony-callsFilteringTable.html',
   controller(
     $scope, $timeout, $filter, $q, $translate, $translatePartialLoader,
-    Toast, ToastError,
+    TucToast, ToastError,
   ) {
     const self = this;
 
@@ -103,7 +103,7 @@ angular.module('managerApp').component('telecomTelephonyCallsFilteringTable', {
       const queries = screenLists.map(self.api.remove);
       self.screenLists.isDeleting = true;
       queries.push($timeout(angular.noop, 500)); // avoid clipping
-      Toast.info($translate.instant('telephony_calls_filtering_table_status_delete_success'));
+      TucToast.info($translate.instant('telephony_calls_filtering_table_status_delete_success'));
       return $q.all(queries).then(() => {
         self.screenLists.selected = [];
         return self.updateScreenList();

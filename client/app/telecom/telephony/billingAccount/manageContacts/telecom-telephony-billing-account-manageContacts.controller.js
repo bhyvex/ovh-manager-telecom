@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageContactsCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, OvhApiMe, TelephonyMediator, OvhApiPackXdslVoipLine, Toast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageContactsCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, OvhApiMe, TelephonyMediator, OvhApiPackXdslVoipLine, TucToast, ToastError) {
   const self = this;
 
   const contactAttributes = ['contactAdmin', 'contactBilling', 'contactTech'];
@@ -186,7 +186,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountManageCon
       _.set(contact, 'editing', false);
       self.isEditing = false;
       associatePendingTasks(tasks);
-      Toast.success($translate.instant('telephony_group_manage_contacts_change_success'));
+      TucToast.success($translate.instant('telephony_group_manage_contacts_change_success'));
     }).catch(err => new ToastError(err)).finally(() => {
       _.set(contact, 'submiting', false);
     });

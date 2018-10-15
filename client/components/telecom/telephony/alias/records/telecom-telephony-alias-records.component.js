@@ -13,7 +13,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
   templateUrl: 'components/telecom/telephony/alias/records/telecom-telephony-alias-records.html',
   controller(
     $filter, $q, $timeout, $translate, $translatePartialLoader,
-    TelephonyMediator, ToastError, Toast,
+    TelephonyMediator, ToastError, TucToast,
   ) {
     const self = this;
 
@@ -112,7 +112,7 @@ angular.module('managerApp').component('telecomTelephonyAliasRecords', {
     self.deleteSelectedRecords = function () {
       const records = self.getSelection();
       self.records.isDeleting = true;
-      Toast.info($translate.instant('telephony_alias_configuration_records_list_delete_success'));
+      TucToast.info($translate.instant('telephony_alias_configuration_records_list_delete_success'));
       return self.api.deleteSelectedRecords(records).then(() => {
         self.records.selected = {};
         refreshRecords();

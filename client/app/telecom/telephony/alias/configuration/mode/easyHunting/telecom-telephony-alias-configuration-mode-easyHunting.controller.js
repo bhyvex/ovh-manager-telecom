@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeEasyHuntingCtrl', function ($stateParams, $q, $translate, $uibModal, OvhApiTelephony, OvhApiMe, Toast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeEasyHuntingCtrl', function ($stateParams, $q, $translate, $uibModal, OvhApiTelephony, OvhApiMe, TucToast, ToastError) {
   const self = this;
 
   function fetchEnums() {
@@ -186,7 +186,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationModeE
 
     self.isUpdating = true;
     return $q.all(pending).then(() => {
-      Toast.success($translate.instant('telephony_alias_configuration_mode_easyhunting_success'));
+      TucToast.success($translate.instant('telephony_alias_configuration_mode_easyhunting_success'));
     }).catch(err => new ToastError(err)).finally(() => {
       self.isUpdating = false;
     });

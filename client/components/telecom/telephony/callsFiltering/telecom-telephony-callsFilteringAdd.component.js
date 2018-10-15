@@ -15,7 +15,15 @@ angular.module('managerApp').component('telecomTelephonyCallsFilteringAdd', {
     disableNature: '@',
   },
   templateUrl: 'components/telecom/telephony/callsFiltering/telecom-telephony-callsFilteringAdd.html',
-  controller($q, $translate, $translatePartialLoader, $uibModal, Toast, ToastError, CSVParser) {
+  controller(
+    $q,
+    $translate,
+    $translatePartialLoader,
+    $uibModal,
+    TucToast,
+    ToastError,
+    CSVParser,
+  ) {
     const self = this;
 
     self.screenListToAdd = {
@@ -50,7 +58,7 @@ angular.module('managerApp').component('telecomTelephonyCallsFilteringAdd', {
         }
         form.$setPristine();
         self.screenListToAdd.callNumber = '';
-        Toast.success($translate.instant('telephony_calls_filtering_add_success'));
+        TucToast.success($translate.instant('telephony_calls_filtering_add_success'));
       }).catch(err => new ToastError(err)).finally(() => {
         self.isAdding = false;
       });
@@ -106,7 +114,7 @@ angular.module('managerApp').component('telecomTelephonyCallsFilteringAdd', {
       } catch (err) {
         return $q.when(new ToastError($translate.instant('telephony_calls_filtering_add_csv_parse_error'), err));
       }
-      Toast.info($translate.instant('telephony_calls_filtering_add_csv_import_success'));
+      TucToast.info($translate.instant('telephony_calls_filtering_add_csv_import_success'));
       return $q.all(_.map(csvArray, line => self.addScreenList({
         screen: {
           callNumber: line[0],

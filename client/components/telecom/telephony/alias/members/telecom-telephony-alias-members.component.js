@@ -11,7 +11,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
     api: '=',
   },
   templateUrl: 'components/telecom/telephony/alias/members/telecom-telephony-alias-members.html',
-  controller($q, $translate, $translatePartialLoader, Toast, ToastError) {
+  controller($q, $translate, $translatePartialLoader, TucToast, ToastError) {
     const self = this;
 
     self.$onInit = function () {
@@ -134,7 +134,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       self.loaders.editing = true;
       const attrs = ['status', 'timeout', 'wrapUpTime', 'simultaneousLines'];
       return self.api.updateMember(self.memberInEdition).then(() => {
-        Toast.success($translate.instant('telephony_alias_members_change_success'));
+        TucToast.success($translate.instant('telephony_alias_members_change_success'));
         const toUpdate = _.find(self.members, { agentId: self.memberInEdition.agentId });
         _.assign(toUpdate, _.pick(self.memberInEdition, attrs));
         self.cancelMemberEdition();
@@ -147,7 +147,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembers', {
       self.loaders.deleting = true;
       self.api.deleteMember(self.memberToDelete).then(() => {
         self.memberToDelete = null;
-        Toast.success($translate.instant('telephony_alias_members_delete_success'));
+        TucToast.success($translate.instant('telephony_alias_members_delete_success'));
         _.remove(self.members, m => m.agentId === toDelete.agentId);
         return self.api.reorderMembers(self.members);
       }).then((orderedMembers) => {

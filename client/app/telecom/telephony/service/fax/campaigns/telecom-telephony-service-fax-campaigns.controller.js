@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl', function ($q, $stateParams, $translate, $filter, $uibModal, OvhApiTelephony, Toast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl', function ($q, $stateParams, $translate, $filter, $uibModal, OvhApiTelephony, TucToast, ToastError) {
   const self = this;
 
   /*= ==============================
@@ -86,7 +86,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
       self.refresh();
     }, (error) => {
       if (error && error.type === 'API') {
-        Toast.error($translate.instant('telephony_service_fax_campaigns_add_campaign_ko', { error: error.message }));
+        TucToast.error($translate.instant('telephony_service_fax_campaigns_add_campaign_ko', { error: error.message }));
       }
     });
 
@@ -126,9 +126,9 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
       id: campaign.id,
     }, {}).$promise.then(() => {
       self.refresh();
-      Toast.success($translate.instant('telephony_service_fax_campaigns_start_ok'));
+      TucToast.success($translate.instant('telephony_service_fax_campaigns_start_ok'));
     }, (error) => {
-      Toast.error($translate.instant('telephony_service_fax_campaigns_start_ko', { error: _.get(error, 'data.message') }));
+      TucToast.error($translate.instant('telephony_service_fax_campaigns_start_ko', { error: _.get(error, 'data.message') }));
       return $q.reject(error);
     });
   };
@@ -146,9 +146,9 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
       id: campaign.id,
     }, {}).$promise.then(() => {
       self.refresh();
-      Toast.success($translate.instant('telephony_service_fax_campaigns_stop_ok'));
+      TucToast.success($translate.instant('telephony_service_fax_campaigns_stop_ok'));
     }, (error) => {
-      Toast.error($translate.instant('telephony_service_fax_campaigns_stop_ko', { error: _.get(error, 'data.message') }));
+      TucToast.error($translate.instant('telephony_service_fax_campaigns_stop_ko', { error: _.get(error, 'data.message') }));
       return $q.reject(error);
     });
   };
@@ -170,7 +170,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
       self.refresh();
     }, (error) => {
       if (error && error.type === 'API') {
-        Toast.error($translate.instant('telephony_service_fax_campaigns_removing_ko', { error: error.message }));
+        TucToast.error($translate.instant('telephony_service_fax_campaigns_removing_ko', { error: error.message }));
       }
     });
 

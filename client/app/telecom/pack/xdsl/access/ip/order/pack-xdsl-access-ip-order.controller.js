@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('XdslAccessIpOrderCtrl', ['$translate', '$uibModalInstance', 'data', 'OvhApiXdslIps', 'Toast', 'ToastError', 'URLS', function ($translate, $uibModalInstance, data, OvhApiXdslIps, Toast, ToastError, URLS) {
+angular.module('managerApp').controller('XdslAccessIpOrderCtrl', ['$translate', '$uibModalInstance', 'data', 'OvhApiXdslIps', 'TucToast', 'ToastError', 'URLS', function ($translate, $uibModalInstance, data, OvhApiXdslIps, TucToast, ToastError, URLS) {
   const self = this;
   const ipRange = 29;
 
@@ -40,7 +40,7 @@ angular.module('managerApp').controller('XdslAccessIpOrderCtrl', ['$translate', 
     OvhApiXdslIps.v6().order({
       xdslId: self.constants.xdslId,
     }, null).$promise.then((result) => {
-      Toast.success($translate.instant('pack_xdsl_access_ip_order_validation'));
+      TucToast.success($translate.instant('pack_xdsl_access_ip_order_validation'));
       $uibModalInstance.close(result);
     }, ToastError).finally(() => {
       self.loading = false;

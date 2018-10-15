@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSmsComposeCtrl', class TelecomSmsSmsComposeCtrl {
     constructor(
       $q, $translate, $stateParams, $filter, $uibModal,
-      OvhApiSms, SmsMediator, OvhApiMe, atInternet, Toast, ToastError, URLS,
+      OvhApiSms, SmsMediator, OvhApiMe, atInternet, TucToast, ToastError, URLS,
     ) {
       this.$q = $q;
       this.$translate = $translate;
@@ -24,7 +24,7 @@ angular
         user: OvhApiMe.v6(),
       };
       this.atInternet = atInternet;
-      this.Toast = Toast;
+      this.TucToast = TucToast;
       this.ToastError = ToastError;
       this.constant = { URLS };
     }
@@ -454,9 +454,9 @@ angular
           },
         });
         this.resetForm(form);
-        this.Toast.success(this.$translate.instant('sms_sms_compose_status_success'));
+        this.TucToast.success(this.$translate.instant('sms_sms_compose_status_success'));
       }).catch((err) => {
-        this.Toast.error(this.$translate.instant('sms_sms_compose_status_failed'));
+        this.TucToast.error(this.$translate.instant('sms_sms_compose_status_failed'));
         return this.$q.reject(err);
       }).finally(() => {
         this.loading.send = false;

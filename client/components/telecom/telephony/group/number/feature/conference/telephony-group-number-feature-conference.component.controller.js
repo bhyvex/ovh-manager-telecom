@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', function ($q, $translate, TelephonyMediator, telephonyGroupNumberConferencePolling, Toast, ToastError) {
+angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', function ($q, $translate, TelephonyMediator, telephonyGroupNumberConferencePolling, TucToast, ToastError) {
   const self = this;
 
   const settingsAttributes = ['language', 'pin', 'announceFile',
@@ -58,7 +58,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
       self.numberCtrl.number.feature.stopEdition();
     }).catch((error) => {
       self.numberCtrl.number.feature.stopEdition(true);
-      Toast.error([$translate.instant('telephony_number_feature_conference_save_error'), (error.data && error.data.message) || ''].join(' '));
+      TucToast.error([$translate.instant('telephony_number_feature_conference_save_error'), (error.data && error.data.message) || ''].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.numberCtrl.loading.save = false;
@@ -230,7 +230,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
       telephonyGroupNumberConferencePolling
         .initPolling(self.numberCtrl.number.feature).then(angular.noop, (error) => {
           if (error) {
-            Toast.error([$translate.instant('telephony_number_feature_conference_refresh_error'), (error.data && error.data.message) || ''].join(' '));
+            TucToast.error([$translate.instant('telephony_number_feature_conference_refresh_error'), (error.data && error.data.message) || ''].join(' '));
           }
           return $q.reject(error);
         }, () => {
@@ -241,7 +241,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
           }
         });
     }).catch((error) => {
-      Toast.error([$translate.instant('telephony_number_feature_conference_load_error'), (error.data && error.data.message) || ''].join(' '));
+      TucToast.error([$translate.instant('telephony_number_feature_conference_load_error'), (error.data && error.data.message) || ''].join(' '));
       return $q.reject(error);
     }).finally(() => {
       self.numberCtrl.loading.feature = false;

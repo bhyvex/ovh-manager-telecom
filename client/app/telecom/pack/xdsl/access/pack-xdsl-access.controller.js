@@ -2,7 +2,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
   constructor(
     $filter, $q, $scope, $stateParams, $templateCache, $translate, $uibModal,
     OvhApiPackXdsl, OvhApiXdsl, OvhApiXdslIps, OvhApiXdslLines, OvhApiXdslModem,
-    OvhApiXdslNotifications, OvhApiXdslTasksCurrent, Toast, ToastError,
+    OvhApiXdslNotifications, OvhApiXdslTasksCurrent, TucToast, ToastError,
     PACK, PACK_IP, REDIRECT_URLS,
   ) {
     this.$filter = $filter;
@@ -19,7 +19,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     this.OvhApiXdslModem = OvhApiXdslModem;
     this.OvhApiXdslNotifications = OvhApiXdslNotifications;
     this.OvhApiXdslTasksCurrent = OvhApiXdslTasksCurrent;
-    this.Toast = Toast;
+    this.TucToast = TucToast;
     this.ToastError = ToastError;
     this.PACK = PACK;
     this.PACK_IP = PACK_IP;
@@ -180,7 +180,7 @@ angular.module('managerApp').controller('XdslAccessCtrl', class XdslAccessCtrl {
     }, null).$promise.then(() => {
       this.getIps();
       _.set(ip, 'deleting', false);
-      this.Toast.success(this.$translate.instant('xdsl_access_ip_block_delete_success', { ip: ip.ip }));
+      this.TucToast.success(this.$translate.instant('xdsl_access_ip_block_delete_success', { ip: ip.ip }));
     }, (err) => {
       _.set(ip, 'deleting', false);
       this.ToastError(err);

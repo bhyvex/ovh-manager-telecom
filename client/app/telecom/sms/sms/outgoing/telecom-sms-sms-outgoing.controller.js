@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSmsOutgoingCtrl', class TelecomSmsSmsOutgoingCtrl {
     constructor(
       $scope, $stateParams, $q, $filter, $timeout, $window, $uibModal, $translate,
-      OvhApiSms, OvhApiMe, debounce, Toast, ToastError,
+      OvhApiSms, OvhApiMe, debounce, TucToast, ToastError,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -20,7 +20,7 @@ angular
         userDocument: OvhApiMe.Document().v6(),
       };
       this.debounce = debounce;
-      this.Toast = Toast;
+      this.TucToast = TucToast;
       this.ToastError = ToastError;
     }
 
@@ -175,7 +175,7 @@ angular
       }).$promise);
       this.outgoing.isDeleting = true;
       queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-      this.Toast.info(this.$translate.instant('sms_sms_outgoing_delete_success'));
+      this.TucToast.info(this.$translate.instant('sms_sms_outgoing_delete_success'));
       return this.$q.all(queries).then(() => {
         this.outgoing.selected = {};
         return this.refresh();
@@ -221,7 +221,7 @@ angular
       });
       modal.result.then(() => this.refresh()).catch((error) => {
         if (error && error.type === 'API') {
-          this.Toast.error(this.$translate.instant('sms_sms_outgoing_remove_ko', { error: error.message }));
+          this.TucToast.error(this.$translate.instant('sms_sms_outgoing_remove_ko', { error: error.message }));
         }
       });
     }
@@ -256,7 +256,7 @@ angular
           this.$window.location.href = doc.getUrl;
         });
       }).catch((error) => {
-        this.Toast.error(this.$translate.instant('sms_sms_outgoing_download_history_ko'));
+        this.TucToast.error(this.$translate.instant('sms_sms_outgoing_download_history_ko'));
         return this.$q.reject(error);
       }).finally(() => {
         this.outgoing.isExporting = false;

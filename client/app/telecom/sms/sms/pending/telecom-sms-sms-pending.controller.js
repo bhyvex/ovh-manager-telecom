@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSmsPendingCtrl', class TelecomSmsSmsPendingCtrl {
     constructor(
       $stateParams, $q, $filter, $uibModal, $translate, $timeout,
-      OvhApiSms, Toast, ToastError,
+      OvhApiSms, TucToast, ToastError,
     ) {
       this.$stateParams = $stateParams;
       this.$q = $q;
@@ -16,7 +16,7 @@ angular
           jobs: OvhApiSms.Jobs().v6(),
         },
       };
-      this.Toast = Toast;
+      this.TucToast = TucToast;
       this.ToastError = ToastError;
     }
 
@@ -151,7 +151,7 @@ angular
       }).$promise);
       this.pending.isDeleting = true;
       queries.push(this.$timeout(angular.noop, 500)); // avoid clipping
-      this.Toast.info(this.$translate.instant('sms_sms_pending_cancel_success'));
+      this.TucToast.info(this.$translate.instant('sms_sms_pending_cancel_success'));
       return this.$q.all(queries).then(() => {
         this.pending.selected = {};
         return this.refresh();
@@ -194,7 +194,7 @@ angular
       });
       modal.result.then(() => this.refresh()).catch((error) => {
         if (error && error.type === 'API') {
-          this.Toast.error(this.$translate.instant('sms_sms_pending_ko', { error: error.message }));
+          this.TucToast.error(this.$translate.instant('sms_sms_pending_ko', { error: error.message }));
         }
       });
     }

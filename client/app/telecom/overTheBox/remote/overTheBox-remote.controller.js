@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($stateParams, $translate, $scope, $q, URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS, OvhApiOverTheBox, ToastError, Toast, IpAddress) {
+angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($stateParams, $translate, $scope, $q, URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS, OvhApiOverTheBox, ToastError, TucToast, IpAddress) {
   const self = this;
 
   this.filter = {
@@ -94,12 +94,12 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
     }, formData).$promise.then(() => {
       init();
       self.addForm = false;
-      Toast.success($translate.instant('overTheBox_remote_element_added'));
+      TucToast.success($translate.instant('overTheBox_remote_element_added'));
     }).catch((err) => {
       if (err && err.data === "Impossible to create a remote access, your device hasn't contacted us for more than 10 minutes") {
-        Toast.error($translate.instant('overTheBox_remote_error_no_contact'));
+        TucToast.error($translate.instant('overTheBox_remote_error_no_contact'));
       } else {
-        Toast.error($translate.instant('overTheBox_remote_error_unknown'));
+        TucToast.error($translate.instant('overTheBox_remote_error_unknown'));
       }
       return $q.reject(err);
     }).finally(() => {
@@ -170,10 +170,10 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
       updateRemote(reloadedRemote, remote);
       if (reloadedRemote.accepted) {
         if (reloadedRemote.status !== 'toDelete') {
-          Toast.success($translate.instant('overTheBox_remote_authorized', { port: reloadedRemote.exposedPort }));
+          TucToast.success($translate.instant('overTheBox_remote_authorized', { port: reloadedRemote.exposedPort }));
         }
       } else {
-        Toast.error($translate.instant('overTheBox_remote_authorized_failed', { port: reloadedRemote.exposedPort }));
+        TucToast.error($translate.instant('overTheBox_remote_authorized_failed', { port: reloadedRemote.exposedPort }));
       }
     }, ToastError).finally(() => {
       _.set(remote, 'busy', false);
@@ -190,7 +190,7 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
       serviceName: $stateParams.serviceName,
       remoteAccessId: remote.remoteAccessId,
     }, null).$promise.then(() => {
-      Toast.success($translate.instant('overTheBox_remote_element_deleted'));
+      TucToast.success($translate.instant('overTheBox_remote_element_deleted'));
       self.reloadRemote(remote);
     }, ToastError).finally(() => {
       _.set(remote, 'busy', false);

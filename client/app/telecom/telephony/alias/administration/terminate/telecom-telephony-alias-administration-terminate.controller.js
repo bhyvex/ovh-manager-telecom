@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerminateCtrl', function ($q, $stateParams, $translate, OvhApiTelephony, TelephonyMediator, Toast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerminateCtrl', function ($q, $stateParams, $translate, OvhApiTelephony, TelephonyMediator, TucToast, ToastError) {
   const self = this;
 
   function getTerminationReasons() {
@@ -46,7 +46,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
       reason: self.reason,
     }).$promise.then(() => getTerminationTask()).then((task) => {
       self.task = task;
-      Toast.success($translate.instant('telephony_alias_administration_terminate_success'));
+      TucToast.success($translate.instant('telephony_alias_administration_terminate_success'));
     }).catch(err => new ToastError(err)).finally(() => {
       self.isTerminating = false;
     });
@@ -59,7 +59,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationTerm
       serviceName: $stateParams.serviceName,
     }, {}).$promise.then(() => getTerminationTask()).then((task) => {
       self.task = task;
-      Toast.success($translate.instant('telephony_alias_administration_cancel_termination_success'));
+      TucToast.success($translate.instant('telephony_alias_administration_cancel_termination_success'));
     }).catch(err => new ToastError(err)).finally(() => {
       self.isCancelling = false;
     });

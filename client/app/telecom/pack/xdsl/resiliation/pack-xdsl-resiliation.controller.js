@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($scope, $stateParams, $translate, $q, $timeout, $filter, OvhApiXdsl, ToastError, OvhApiXdslResiliation, Toast) {
+angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($scope, $stateParams, $translate, $q, $timeout, $filter, OvhApiXdsl, ToastError, OvhApiXdslResiliation, TucToast) {
   const self = this;
 
   this.loading = true;
@@ -61,7 +61,7 @@ angular.module('managerApp').controller('PackXdslResiliationCtrl', function ($sc
         resiliationSurvey: survey,
         resiliationDate: self.when ? self.when.toISOString() : null,
       }).$promise.then(() => {
-        Toast.success($translate.instant('xdsl_resiliation_mail'));
+        TucToast.success($translate.instant('xdsl_resiliation_mail'));
         self.init();
       }, err => new ToastError(err)).finally(() => {
         self.loading = false;

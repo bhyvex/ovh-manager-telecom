@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberCtrl', function ($scope, $stateParams, $translate, $timeout, OvhApiTelephonyLineOptions, Toast, ToastError, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberCtrl', function ($scope, $stateParams, $translate, $timeout, OvhApiTelephonyLineOptions, TucToast, ToastError, telephonyBulk) {
   const self = this;
 
   function getLineOptions() {
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     }, data).$promise.then(() => {
       self.identificationRestriction = self.form.identificationRestriction;
       self.displayedService = angular.copy(self.form.displayedService);
-      Toast.success($translate.instant('telephony_line_actions_line_calls_display_number_write_success'));
+      TucToast.success($translate.instant('telephony_line_actions_line_calls_display_number_write_success'));
     }, () => new ToastError($translate.instant('telephony_line_actions_line_calls_display_number_write_error'))).finally(() => {
       self.isUpdating = false;
     });
@@ -109,14 +109,14 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
 
   self.onBulkSuccess = function (bulkResult) {
     // display message of success or error
-    telephonyBulk.getToastInfos(bulkResult, {
+    telephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_actions_line_calls_display_number_bulk_all_success'),
       partialSuccess: $translate.instant('telephony_line_actions_line_calls_display_number_bulk_some_success', {
         count: bulkResult.success.length,
       }),
       error: $translate.instant('telephony_line_actions_line_calls_display_number_bulk_error'),
     }).forEach((toastInfo) => {
-      Toast[toastInfo.type](toastInfo.message, {
+      TucToast[toastInfo.type](toastInfo.message, {
         hideAfter: null,
       });
     });
@@ -127,7 +127,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
   };
 
   self.onBulkError = function (error) {
-    Toast.error([$translate.instant('telephony_line_actions_line_calls_display_number_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_actions_line_calls_display_number_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
   };
 
   /* -----  End of BULK  ------ */

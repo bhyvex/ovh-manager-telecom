@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDepositMovementCtrl', function ($q, $state, $timeout, $translate, OvhApiTelephony, ToastError, Toast) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDepositMovementCtrl', function ($q, $state, $timeout, $translate, OvhApiTelephony, ToastError, TucToast) {
   const self = this;
 
   self.loading = {
@@ -84,7 +84,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountBillingDe
         });
         self.targets = targets;
       }).catch((err) => {
-        Toast.error($translate.instant('telephony_group_billing_deposit_movement_capability_error'));
+        TucToast.error($translate.instant('telephony_group_billing_deposit_movement_capability_error'));
         return $q.reject(err);
       });
   };

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', function ($stateParams, $q, $translate, Toast, ToastError, OvhApiTelephony) {
+angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', function ($stateParams, $q, $translate, TucToast, ToastError, OvhApiTelephony) {
   const self = this;
 
   function init() {
@@ -43,7 +43,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineAssistRmaCtrl', fun
       }).$promise
       .then(() => {
         _.remove(self.rmaList, { id: rma.id });
-        Toast.success($translate.instant('telephony_line_assist_rma_cancel_success'));
+        TucToast.success($translate.instant('telephony_line_assist_rma_cancel_success'));
       })
       .catch(err => new ToastError(err)).finally(() => {
         _.set(rma, 'isCancelling', false);

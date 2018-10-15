@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('OrderOverTheBoxCtrl', function ($translate, $q, $scope, OvhApiOrderOverTheBoxNew, OvhApiPriceOverTheBoxOffer, OvhApiOverTheBox, Toast, ToastError, OvhApiMePaymentMean) {
+angular.module('managerApp').controller('OrderOverTheBoxCtrl', function ($translate, $q, $scope, OvhApiOrderOverTheBoxNew, OvhApiPriceOverTheBoxOffer, OvhApiOverTheBox, TucToast, ToastError, OvhApiMePaymentMean) {
   const self = this;
 
   self.loaders = {

@@ -1,6 +1,6 @@
 angular.module('managerApp').controller('PackMoveCtrl', function (
   $scope, $compile, $state, $timeout, $translate, $uibModal, $filter, $q, $stateParams,
-  REDIRECT_URLS, OvhApiPackXdslMove, Poller, Toast, ToastError,
+  REDIRECT_URLS, OvhApiPackXdslMove, Poller, TucToast, ToastError,
   OvhApiPackXdslTask, OvhApiPackXdsl, OvhApiXdsl, uiCalendarConfig, validator,
 ) {
   const self = this;
@@ -142,7 +142,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
         case 'error':
           $translate('pack_move_cannot_validate_move', { message: data.error })
             .then((translation) => {
-              Toast.error(translation, { hideAfter: false });
+              TucToast.error(translation, { hideAfter: false });
             });
 
           self.moveValidationError = true;
@@ -177,7 +177,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
 
       $translate('pack_move_cannot_validate_move', { message: message.join(' ') })
         .then((translation) => {
-          Toast.error(translation, { hideAfter: false });
+          TucToast.error(translation, { hideAfter: false });
         });
 
       self.moveValidationPending = false;
@@ -369,7 +369,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
       self.hasSlamming = !!slammingLines.length;
       return self.hasSlamming;
     }).catch((err) => {
-      Toast.error($translate.instant('pack_move_slamming_error'));
+      TucToast.error($translate.instant('pack_move_slamming_error'));
       return $q.reject(err);
     }).finally(() => {
       self.slammingCheck = false;

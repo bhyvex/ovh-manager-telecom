@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('FreeFaxVoicemailConfigurationCtrl', function ($scope, $stateParams, OvhApiFreeFax, Toast, $translate, ToastError, $q, FREEFAX) {
+angular.module('managerApp').controller('FreeFaxVoicemailConfigurationCtrl', function ($scope, $stateParams, OvhApiFreeFax, TucToast, $translate, ToastError, $q, FREEFAX) {
   const self = this;
   let initialActivateVoiceMail;
 
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('FreeFaxVoicemailConfigurationCtrl', fun
     }
 
     $q.all(tasks).then(() => {
-      Toast.success($translate.instant('freefax_voicemail_success'));
+      TucToast.success($translate.instant('freefax_voicemail_success'));
       init();
     }, ToastError);
   };
@@ -112,7 +112,7 @@ angular.module('managerApp').controller('FreeFaxVoicemailConfigurationCtrl', fun
   this.changePassword = function (newPassword) {
     return $q((resolve, reject) => {
       if (!self.checkPassword()) {
-        Toast.error($translate.instant('freefax_voicemail_bad_password'));
+        TucToast.error($translate.instant('freefax_voicemail_bad_password'));
         reject($translate.instant('freefax_voicemail_bad_password'));
       } else {
         OvhApiFreeFax.v6().changePassword({

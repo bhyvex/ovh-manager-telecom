@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', function ($q, $scope, $stateParams, $translate, IpAddress, TelephonyMediator, OvhApiTelephony, OvhApiOrder, Toast, ToastError, TELEPHONY_RMA) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', function ($q, $scope, $stateParams, $translate, IpAddress, TelephonyMediator, OvhApiTelephony, OvhApiOrder, TucToast, ToastError, TELEPHONY_RMA) {
   const self = this;
 
   self.pdfBaseUrl = TELEPHONY_RMA.pdfBaseUrl;
@@ -280,7 +280,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       ipAddress: self.attachedPhoneIpAddress,
       macAddress: self.phone.macAddress,
     }).$promise.then(() => {
-      Toast.success($translate.instant('telephony_line_phone_order_detach_device_success'));
+      TucToast.success($translate.instant('telephony_line_phone_order_detach_device_success'));
 
       // Cache reset
       OvhApiTelephony.Line().v6().resetAllCache();
@@ -288,7 +288,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       TelephonyMediator.resetAllCache();
       init();
     }).catch((err) => {
-      Toast.error([$translate.instant('telephony_line_phone_order_detach_device_error'), _.get(err, 'data.message')].join(' '));
+      TucToast.error([$translate.instant('telephony_line_phone_order_detach_device_error'), _.get(err, 'data.message')].join(' '));
       return $q.reject(err);
     }).finally(() => {
       self.isDetaching = false;

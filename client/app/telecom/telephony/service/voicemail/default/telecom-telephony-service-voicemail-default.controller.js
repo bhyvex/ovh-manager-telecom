@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefaultCtrl', function ($scope, $stateParams, $q, $timeout, $filter, $translate, ToastError, OvhApiTelephony, telephonyBulk, Toast) {
+angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefaultCtrl', function ($scope, $stateParams, $q, $timeout, $filter, $translate, ToastError, OvhApiTelephony, telephonyBulk, TucToast) {
   const self = this;
 
   function fetchLines() {
@@ -99,14 +99,14 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
 
   self.onBulkSuccess = function (bulkResult) {
     // display message of success or error
-    telephonyBulk.getToastInfos(bulkResult, {
+    telephonyBulk.getTucToastInfos(bulkResult, {
       fullSuccess: $translate.instant('telephony_line_answer_default_voicemail_bulk_all_success'),
       partialSuccess: $translate.instant('telephony_line_answer_default_voicemail_bulk_some_success', {
         count: bulkResult.success.length,
       }),
       error: $translate.instant('telephony_line_answer_default_voicemail_bulk_error'),
     }).forEach((toastInfo) => {
-      Toast[toastInfo.type](toastInfo.message, {
+      TucToast[toastInfo.type](toastInfo.message, {
         hideAfter: null,
       });
     });
@@ -118,6 +118,6 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
   };
 
   self.onBulkError = function (error) {
-    Toast.error([$translate.instant('telephony_line_answer_default_voicemail_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
+    TucToast.error([$translate.instant('telephony_line_answer_default_voicemail_bulk_on_error'), _.get(error, 'msg.data')].join(' '));
   };
 });

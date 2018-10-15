@@ -7,7 +7,15 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
   },
   templateUrl: 'app/telecom/pack/move/eligibility/lineNumber/pack-move-eligibility-lineNumber.html',
   controllerAs: 'PackMoveEligibilityPhoneNumber',
-  controller($scope, $stateParams, $filter, $translate, ToastError, Toast, OvhApiPackXdslMove) {
+  controller(
+    $scope,
+    $stateParams,
+    $filter,
+    $translate,
+    ToastError,
+    TucToast,
+    OvhApiPackXdslMove,
+  ) {
     const self = this;
     this.phoneNumberRegex = '^0[1-5]([\\s\\-]?([0-9]){2}){4}$';
 
@@ -29,7 +37,7 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
             self.offers = _.isArray(data.result.offers) ? data.result.offers : [];
 
             if (self.offers.length === 0) {
-              Toast.error($translate.instant('pack_move_eligibility_no_offers', { number: self.lineNumber }));
+              TucToast.error($translate.instant('pack_move_eligibility_no_offers', { number: self.lineNumber }));
             }
           }
           self.offers.forEach((offer) => {

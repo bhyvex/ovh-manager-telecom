@@ -3,7 +3,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
     api: '=',
   },
   templateUrl: 'components/telecom/telephony/alias/members/telecom-telephony-alias-members-add.html',
-  controller($q, $translate, $translatePartialLoader, $uibModal, Toast, ToastError) {
+  controller($q, $translate, $translatePartialLoader, $uibModal, TucToast, ToastError) {
     const self = this;
 
     self.$onInit = function () {
@@ -67,7 +67,7 @@ angular.module('managerApp').component('telecomTelephonyAliasMembersAdd', {
             .map(number => _.assign({ number }, self.addMemberForm.options))
             .value())
           .then(() => {
-            Toast.success($translate.instant('telephony_alias_members_add_success'));
+            TucToast.success($translate.instant('telephony_alias_members_add_success'));
             self.resetMemberAddForm();
             form.$setPristine();
           })

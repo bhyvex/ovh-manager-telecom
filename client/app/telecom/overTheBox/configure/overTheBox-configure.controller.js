@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('OverTheBoxConfigureCtrl', function ($translate, $state, OvhApiOverTheBox, Toast, ToastError) {
+angular.module('managerApp').controller('OverTheBoxConfigureCtrl', function ($translate, $state, OvhApiOverTheBox, TucToast, ToastError) {
   const self = this;
 
   this.orderHash = $state.href('order-overTheBox');

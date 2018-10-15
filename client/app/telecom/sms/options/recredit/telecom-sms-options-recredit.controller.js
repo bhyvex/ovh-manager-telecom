@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsOptionsRecreditCtrl', class TelecomSmsOptionsRecreditCtrl {
     constructor(
       $q, $stateParams, $translate, $uibModal,
-      OvhApiOrderSms, SmsMediator, Toast, ToastError,
+      OvhApiOrderSms, SmsMediator, TucToast, ToastError,
     ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -13,7 +13,7 @@ angular
         orderSms: OvhApiOrderSms.v6(),
       };
       this.SmsMediator = SmsMediator;
-      this.Toast = Toast;
+      this.TucToast = TucToast;
       this.ToastError = ToastError;
     }
 
@@ -70,7 +70,7 @@ angular
         });
       }).catch((error) => {
         if (error && error.type === 'API') {
-          this.Toast.error(this.$translate.instant('sms_options_recredit_update_ko', { error: error.message }));
+          this.TucToast.error(this.$translate.instant('sms_options_recredit_update_ko', { error: error.message }));
         }
       });
     }

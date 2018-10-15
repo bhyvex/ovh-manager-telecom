@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueuesOvhPabxCtrl', function ($stateParams, $q, $translate, $timeout, $uibModal, OvhApiTelephony, Toast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueuesOvhPabxCtrl', function ($stateParams, $q, $translate, $timeout, $uibModal, OvhApiTelephony, TucToast, ToastError) {
   const self = this;
 
   function init() {
@@ -198,7 +198,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       }, {
         strategy: 'sequentiallyByAgentOrder',
       }).$promise.then(() => {
-        Toast.success($translate.instant('telephony_alias_configuration_queues_queue_create_success'));
+        TucToast.success($translate.instant('telephony_alias_configuration_queues_queue_create_success'));
         return self.fetchQueues().then((queues) => {
           self.queues = queues;
         });
@@ -216,7 +216,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
         queueId: queue.queueId,
       }).$promise.then(() => {
         _.remove(self.queues, { queueId: queue.queueId });
-        Toast.success($translate.instant('telephony_alias_configuration_queues_queue_delete_success'));
+        TucToast.success($translate.instant('telephony_alias_configuration_queues_queue_delete_success'));
       }).catch(err => new ToastError(err)).finally(() => {
         self.isDeleting = false;
       });
@@ -249,7 +249,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
           queue.agentsApi.addMembersToList([added]);
           _.set(queue, 'agentToAdd', null);
           _.set(queue, 'addAgent', false);
-          Toast.success($translate.instant('telephony_alias_configuration_queues_agent_add_success'));
+          TucToast.success($translate.instant('telephony_alias_configuration_queues_agent_add_success'));
         }).catch(err => new ToastError(err)).finally(() => {
           _.set(queue, 'isAdding', false);
         });
@@ -300,7 +300,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationQueue
       }).$promise.then(() => {
         _.assign(queue, queue.inEdition);
         _.set(queue, 'inEdition', null);
-        Toast.success($translate.instant('telephony_alias_configuration_queues_queue_update_success'));
+        TucToast.success($translate.instant('telephony_alias_configuration_queues_queue_update_success'));
       }).catch(err => new ToastError(err)).finally(() => {
         _.set(queue, 'isUpdating', true);
       });
