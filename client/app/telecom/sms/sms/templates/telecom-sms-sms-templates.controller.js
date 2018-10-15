@@ -7,7 +7,7 @@ angular.module('managerApp').controller('TelecomSmsSmsTemplatesCtrl', class Tele
     OvhApiSms,
     SmsMediator,
     TucToast,
-    ToastError,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$translate = $translate;
@@ -20,7 +20,7 @@ angular.module('managerApp').controller('TelecomSmsSmsTemplatesCtrl', class Tele
     };
     this.SmsMediator = SmsMediator;
     this.TucToast = TucToast;
-    this.ToastError = ToastError;
+    this.TucToastError = TucToastError;
 
     this.templateItemModel = ['comment', 'status', 'name', 'description', 'activity', 'message', 'datetime'];
   }
@@ -47,7 +47,7 @@ angular.module('managerApp').controller('TelecomSmsSmsTemplatesCtrl', class Tele
         this.templates.raw = templates.map(name => ({ name }));
       });
     }).catch((err) => {
-      this.ToastError(err);
+      this.TucToastError(err);
     }).finally(() => {
       this.loading.init = false;
     });
@@ -97,7 +97,7 @@ angular.module('managerApp').controller('TelecomSmsSmsTemplatesCtrl', class Tele
     }).$promise.then((templates) => {
       this.templates.raw = templates.map(name => ({ name }));
     }).catch((err) => {
-      this.ToastError(err);
+      this.TucToastError(err);
     }).finally(() => {
       this.templates.isLoading = false;
     });

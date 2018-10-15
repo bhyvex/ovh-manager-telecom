@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSendersCtrl', class TelecomSmsSendersCtrl {
     constructor(
       $stateParams, $q, $filter, $timeout, $uibModal, $translate,
-      OvhApiSms, TucToast, ToastError,
+      OvhApiSms, TucToast, TucToastError,
     ) {
       this.$stateParams = $stateParams;
       this.$q = $q;
@@ -18,7 +18,7 @@ angular
         },
       };
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
     }
 
     $onInit() {
@@ -60,7 +60,7 @@ angular
         this.senders.hasExpiration = _.some(this.senders.raw, 'serviceInfos.renew.deleteAtExpiration');
         this.sortSenders();
       })).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.senders.isLoading = false;
       });
@@ -142,7 +142,7 @@ angular
         this.senders.selected = {};
         return this.refresh();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.senders.isDeleting = false;
       });

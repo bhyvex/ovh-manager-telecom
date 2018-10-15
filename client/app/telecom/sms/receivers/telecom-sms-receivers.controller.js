@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsReceiversCtrl', class TelecomSmsReceiversCtrl {
     constructor(
       $scope, $stateParams, $q, $filter, $uibModal, $translate, $timeout,
-      OvhApiSms, CSVParser, TucToast, ToastError, URLS,
+      OvhApiSms, CSVParser, TucToast, TucToastError, URLS,
     ) {
       this.$filter = $filter;
       this.$q = $q;
@@ -20,7 +20,7 @@ angular
       };
       this.CSVParser = CSVParser;
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
       this.constant = { URLS };
     }
 
@@ -57,7 +57,7 @@ angular
         this.receivers.raw = angular.copy(receivers);
         this.sortReceivers();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.receivers.isLoading = false;
       });
@@ -137,7 +137,7 @@ angular
         this.receivers.raw = angular.copy(receivers);
         this.sortReceivers();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.receivers.isLoading = false;
       });
@@ -257,7 +257,7 @@ angular
         return this.csv.data;
       }).catch((err) => {
         this.receivers.isReading = false;
-        this.ToastError(err);
+        this.TucToastError(err);
       });
     }
 
@@ -309,7 +309,7 @@ angular
         this.receivers.selected = {};
         return this.refresh();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.receivers.isDeleting = false;
       });

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtrl', function ($q, $stateParams, $translate, TucToast, ToastError, OvhApiTelephony, TelephonyMediator, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtrl', function ($q, $stateParams, $translate, TucToast, TucToastError, OvhApiTelephony, TelephonyMediator, telephonyBulk) {
   const self = this;
 
   function setIntercomGetter(obj) {
@@ -42,7 +42,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
       }
       TucToast.success($translate.instant(`telephony_line_actions_line_calls_call_waiting_intercom_save_success_${self.options.intercom}`));
     }, () => {
-      ToastError($translate.instant('telephony_line_actions_line_calls_call_waiting_save_error'));
+      TucToastError($translate.instant('telephony_line_actions_line_calls_call_waiting_save_error'));
     }).finally(() => {
       self.loading.save = false;
     });
@@ -84,7 +84,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsCallWaitingCtr
         return self.options;
       })
       .catch(() => {
-        ToastError($translate.instant('telephony_line_actions_line_calls_call_waiting_load_error'));
+        TucToastError($translate.instant('telephony_line_actions_line_calls_call_waiting_load_error'));
       })
       .finally(() => {
         self.loading.init = false;

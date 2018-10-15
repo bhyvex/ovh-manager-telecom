@@ -7,7 +7,7 @@ angular.module('managerApp')
     OvhApiXdsl,
     TucToast,
     $uibModal,
-    ToastError,
+    TucToastError,
     REDIRECT_URLS,
     OvhApiPackXdsl,
     validator,
@@ -63,7 +63,7 @@ angular.module('managerApp')
         (data) => {
           self.isLegacyOffer = data.capabilities.isLegacyOffer;
         },
-        ToastError,
+        TucToastError,
       );
     }
 

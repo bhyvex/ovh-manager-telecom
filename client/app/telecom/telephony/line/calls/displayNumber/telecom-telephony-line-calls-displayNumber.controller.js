@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberCtrl', function ($scope, $stateParams, $translate, $timeout, OvhApiTelephonyLineOptions, TucToast, ToastError, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberCtrl', function ($scope, $stateParams, $translate, $timeout, OvhApiTelephonyLineOptions, TucToast, TucToastError, telephonyBulk) {
   const self = this;
 
   function getLineOptions() {
@@ -8,7 +8,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
     }).$promise.then((options) => {
       self.options = _.isObject(options) ? options : {};
       return options;
-    }, () => new ToastError($translate.instant('telephony_line_actions_line_calls_display_number_read_error')));
+    }, () => new TucToastError($translate.instant('telephony_line_actions_line_calls_display_number_read_error')));
   }
 
   function init() {
@@ -29,7 +29,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
       self.form.identificationRestriction = self.identificationRestriction;
       self.displayedService = options.displayNumber;
       self.form.displayedService = angular.copy(self.displayedService);
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -68,7 +68,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsDisplayNumberC
       self.identificationRestriction = self.form.identificationRestriction;
       self.displayedService = angular.copy(self.form.displayedService);
       TucToast.success($translate.instant('telephony_line_actions_line_calls_display_number_write_success'));
-    }, () => new ToastError($translate.instant('telephony_line_actions_line_calls_display_number_write_error'))).finally(() => {
+    }, () => new TucToastError($translate.instant('telephony_line_actions_line_calls_display_number_write_error'))).finally(() => {
       self.isUpdating = false;
     });
   };

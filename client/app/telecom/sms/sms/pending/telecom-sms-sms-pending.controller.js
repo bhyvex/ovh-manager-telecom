@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSmsPendingCtrl', class TelecomSmsSmsPendingCtrl {
     constructor(
       $stateParams, $q, $filter, $uibModal, $translate, $timeout,
-      OvhApiSms, TucToast, ToastError,
+      OvhApiSms, TucToast, TucToastError,
     ) {
       this.$stateParams = $stateParams;
       this.$q = $q;
@@ -17,7 +17,7 @@ angular
         },
       };
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
     }
 
     $onInit() {
@@ -49,7 +49,7 @@ angular
         this.pending.raw = angular.copy(pending);
         this.applySorting();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.pending.isLoading = false;
       });
@@ -156,7 +156,7 @@ angular
         this.pending.selected = {};
         return this.refresh();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.pending.isDeleting = false;
       });
@@ -211,7 +211,7 @@ angular
         serviceName: this.$stateParams.serviceName,
         id: sms.id,
       }).$promise))).then(() => this.refresh()).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.loading.cancelAll = false;
       });

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', function ($q, $stateParams, $translate, $timeout, TucToast, ToastError, OvhApiTelephony, TelephonyMediator) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', function ($q, $stateParams, $translate, $timeout, TucToast, TucToastError, OvhApiTelephony, TelephonyMediator) {
   const self = this;
 
   function init() {
@@ -9,7 +9,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneRebootCtrl', f
         self.phone = phone;
         self.isRebootable = /^phone\.(thomson|swissvoice)/.test(self.phone.brand);
       })
-      .catch(err => new ToastError(err))
+      .catch(err => new TucToastError(err))
       .finally(() => {
         self.isLoading = false;
       });

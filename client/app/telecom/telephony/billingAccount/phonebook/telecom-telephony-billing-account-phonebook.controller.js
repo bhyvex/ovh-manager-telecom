@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('TelecomTelephonyBillingAccountPhonebookCtrl', function ($document, $filter, $q, $scope, $stateParams, $timeout, $translate, $uibModal, $window, OvhApiTelephony, voipServiceTask, TucToast, ToastError, TELEPHONY_PHONEBOOK) {
+  .controller('TelecomTelephonyBillingAccountPhonebookCtrl', function ($document, $filter, $q, $scope, $stateParams, $timeout, $translate, $uibModal, $window, OvhApiTelephony, voipServiceTask, TucToast, TucToastError, TELEPHONY_PHONEBOOK) {
     const self = this;
 
     /*= ==============================
@@ -75,7 +75,7 @@ angular.module('managerApp')
         form.$setPristine();
         _.assign(self.phonebook, _.pick(phonebook, ['bookKey']), name);
         TucToast.success($translate.instant('telephony_phonebook_create_success'));
-      }).catch(error => new ToastError(error)).finally(() => {
+      }).catch(error => new TucToastError(error)).finally(() => {
         self.phonebookToAdd.isAdding = false;
       });
     };
@@ -263,7 +263,7 @@ angular.module('managerApp')
       }).$promise.then(() => {
         TucToast.success($translate.instant('telephony_phonebook_contact_remove_success'));
         return self.refresh();
-      }).catch(error => new ToastError(error)).finally(() => {
+      }).catch(error => new TucToastError(error)).finally(() => {
         self.phonebookContact.isDeleting = false;
       });
     };
@@ -282,7 +282,7 @@ angular.module('managerApp')
       return $q.all(queries).then(() => {
         self.phonebookContact.selected = {};
         return self.refresh();
-      }).catch(error => new ToastError(error)).finally(() => {
+      }).catch(error => new TucToastError(error)).finally(() => {
         self.phonebookContact.isDeleting = false;
       });
     };
@@ -327,7 +327,7 @@ angular.module('managerApp')
         self.phonebookContact.raw = phonebookContact;
         self.sortPhonebookContact();
         self.updatePhonebookContactGroups();
-      }).catch(error => new ToastError(error)).finally(() => {
+      }).catch(error => new TucToastError(error)).finally(() => {
         self.phonebookContact.isLoading = false;
       });
     };
@@ -377,7 +377,7 @@ angular.module('managerApp')
           });
         }
         return null;
-      }).catch(error => new ToastError(error)).finally(() => {
+      }).catch(error => new TucToastError(error)).finally(() => {
         self.phonebook.isLoading = false;
       });
     }

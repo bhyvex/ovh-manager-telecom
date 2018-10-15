@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConvertToLineCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, ToastError, TucToast, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConvertToLineCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, TucToastError, TucToast, telephonyBulk) {
   const self = this;
 
   function init() {
@@ -13,7 +13,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
         self.offerError = $translate.instant('telephony_alias_administration_convert_range_error');
         return $q.reject(err);
       }
-      return new ToastError(err);
+      return new TucToastError(err);
     });
   }
 
@@ -66,7 +66,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
       offer: self.offer.name,
     }).$promise.then(() => self.refresh()).then(() => {
       TucToast.success($translate.instant('telephony_alias_administration_convert_success'));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isConverting = false;
     });
   };
@@ -78,7 +78,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasAdministrationConv
       serviceName: $stateParams.serviceName,
     }, {}).$promise.then(() => self.refresh()).then(() => {
       TucToast.success($translate.instant('telephony_alias_administration_convert_cancel_success'));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isCancelling = false;
     });
   };

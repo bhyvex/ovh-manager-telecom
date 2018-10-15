@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSmsComposeCtrl', class TelecomSmsSmsComposeCtrl {
     constructor(
       $q, $translate, $stateParams, $filter, $uibModal,
-      OvhApiSms, SmsMediator, OvhApiMe, atInternet, TucToast, ToastError, URLS,
+      OvhApiSms, SmsMediator, OvhApiMe, atInternet, TucToast, TucToastError, URLS,
     ) {
       this.$q = $q;
       this.$translate = $translate;
@@ -25,7 +25,7 @@ angular
       };
       this.atInternet = atInternet;
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
       this.constant = { URLS };
     }
 
@@ -111,7 +111,7 @@ angular
         this.service = this.SmsMediator.getCurrentSmsService();
         this.computeRemainingChar();
       })).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.loading.init = false;
       });

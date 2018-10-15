@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl', function ($q, $stateParams, $translate, $filter, $uibModal, OvhApiTelephony, TucToast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl', function ($q, $stateParams, $translate, $filter, $uibModal, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
   /*= ==============================
@@ -69,7 +69,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     return fetchCampaigns().then((campaigns) => {
       self.campaigns.raw = campaigns;
       self.applySorting();
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.campaigns.isLoading = false;
     });
   };
@@ -201,7 +201,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxCampaignsCtrl
     return fetchCampaigns().then((campaigns) => {
       self.campaigns.raw = angular.copy(campaigns);
       self.applySorting();
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.campaigns.isLoading = false;
     });
   }

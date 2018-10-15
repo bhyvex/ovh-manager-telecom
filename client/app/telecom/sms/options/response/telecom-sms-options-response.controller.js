@@ -7,7 +7,7 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
     OvhApiSms,
     SmsMediator,
     TucToast,
-    ToastError,
+    TucToastError,
   ) {
     this.$q = $q;
     this.$stateParams = $stateParams;
@@ -19,7 +19,7 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
     };
     this.SmsMediator = SmsMediator;
     this.TucToast = TucToast;
-    this.ToastError = ToastError;
+    this.TucToastError = TucToastError;
   }
 
   $onInit() {
@@ -57,7 +57,7 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
       this.senders = responses.senders;
       this.computeRemainingChar();
     }).catch((err) => {
-      this.ToastError(err);
+      this.TucToastError(err);
     }).finally(() => {
       this.loading.init = false;
     });
@@ -130,7 +130,7 @@ angular.module('managerApp').controller('TelecomSmsOptionsResponseCtrl', class T
       this.smsResponse = angular.copy(_.result(this.service, 'smsResponse'));
       this.TucToast.success(this.$translate.instant('sms_options_response_action_status_success'));
     }).catch((err) => {
-      this.ToastError(err);
+      this.TucToastError(err);
     }).finally(() => {
       this.loading.action = false;
     });

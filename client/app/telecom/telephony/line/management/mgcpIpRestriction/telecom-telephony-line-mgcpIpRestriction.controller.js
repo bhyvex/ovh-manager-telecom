@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneMgcpIpRestrictionCtrl', function ($q, $stateParams, $translate, IpAddress, OvhApiTelephony, OvhApiMe, TucToast, ToastError, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneMgcpIpRestrictionCtrl', function ($q, $stateParams, $translate, IpAddress, OvhApiTelephony, OvhApiMe, TucToast, TucToastError, telephonyBulk) {
   const self = this;
 
   /*= ==============================
@@ -120,7 +120,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneMgcpIpRestrict
       self.mgcpIpRestrictionForm = angular.copy(self.mgcpIpRestriction);
       self.mgcpDefaultIpRestriction = result.defaultMgcpIpRestriction;
       self.mgcpDefaultIpRestrictionForm = angular.copy(self.mgcpDefaultIpRestriction);
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }

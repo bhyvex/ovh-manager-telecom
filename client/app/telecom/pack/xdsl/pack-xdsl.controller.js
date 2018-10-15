@@ -1,5 +1,5 @@
 /* global setTimeout */
-angular.module('managerApp').controller('PackXdslCtrl', function ($q, $transitions, $state, $translate, $stateParams, OvhApiPackXdsl, OvhApiXdsl, OvhApiXdslModem, TucToast, smoothScroll, ToastError, SidebarMenu) {
+angular.module('managerApp').controller('PackXdslCtrl', function ($q, $transitions, $state, $translate, $stateParams, OvhApiPackXdsl, OvhApiXdsl, OvhApiXdslModem, TucToast, smoothScroll, TucToastError, SidebarMenu) {
   const animTime = 1500;
   const noModemStatus = 404;
   const self = this;
@@ -41,7 +41,7 @@ angular.module('managerApp').controller('PackXdslCtrl', function ($q, $transitio
       },
       (err) => {
         if (err.status !== noModemStatus) {
-          ToastError(err);
+          TucToastError(err);
           return $q.reject(err);
         }
         return err;

@@ -12,7 +12,7 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
     $stateParams,
     $filter,
     $translate,
-    ToastError,
+    TucToastError,
     TucToast,
     OvhApiPackXdslMove,
   ) {
@@ -30,7 +30,7 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
         (data) => {
           if (data.error) {
             self.offersChange({ OFFERS: [] });
-            return new ToastError(data, data.error);
+            return new TucToastError(data, data.error);
           }
           if (angular.isDefined(data.result.offers)) {
             _.extend(self.testLine, data);
@@ -56,7 +56,7 @@ angular.module('managerApp').component('packMoveEligibilityLineNumber', {
           self.offersChange({ OFFERS: self.offers });
           return data;
         },
-        () => new ToastError($translate.instant('pack_move_eligibility_error')),
+        () => new TucToastError($translate.instant('pack_move_eligibility_error')),
       ).finally(() => {
         self.loading = false;
       });

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, ToastError, TELEPHONY_NUMBER_OFFER) {
+angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError, TELEPHONY_NUMBER_OFFER) {
   const self = this;
 
   /**
@@ -27,7 +27,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderSpecialCtrl',
         return data;
       },
       (err) => {
-        ToastError($translate.instant('telephony_order_specific_numbers_error'));
+        TucToastError($translate.instant('telephony_order_specific_numbers_error'));
         return $q.reject(err);
       },
     );

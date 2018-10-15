@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', function ($stateParams, $timeout, $q, $document, $translate, OvhApiTelephony, ToastError, IpAddress, OvhApiMe, TucToast, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', function ($stateParams, $timeout, $q, $document, $translate, OvhApiTelephony, TucToastError, IpAddress, OvhApiMe, TucToast, telephonyBulk) {
   const self = this;
 
   function fetchLineOptions() {
@@ -27,7 +27,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
       self.lineOptionsForm = angular.copy(self.lineOptions);
       self.accountRestrictions = result.accountRestrictions;
       self.accountRestrictionsForm = angular.copy(self.accountRestrictions);
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -89,7 +89,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
       $timeout(() => {
         self.changeLineSuccess = false;
       }, 2000);
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isChangingLineOptions = false;
     });
   };
@@ -132,7 +132,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineRestrictionsCtrl', 
           self.changeAccountSuccess = false;
         }, 2000);
       })
-      .catch(err => new ToastError(err))
+      .catch(err => new TucToastError(err))
       .finally(() => {
         self.isChangingAccountOptions = false;
       });

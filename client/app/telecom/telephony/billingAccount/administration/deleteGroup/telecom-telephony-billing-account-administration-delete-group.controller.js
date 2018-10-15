@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationDeleteGroup', function ($stateParams, $q, $translate, OvhApiTelephony, TucToast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationDeleteGroup', function ($stateParams, $q, $translate, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
   function getOfferTaskList(billingAccount) {
@@ -34,7 +34,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     }, {}).$promise.then(() => fetchTerminationTask()).then(() => {
       const groupName = self.group.description || self.group.billingAccount;
       return TucToast.success($translate.instant('telephony_delete_group_cancel_success', { group: groupName }));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.cancelling = false;
     });
   };
@@ -46,7 +46,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
     }, {}).$promise.then(() => fetchTerminationTask()).then(() => {
       const groupName = self.group.description || self.group.billingAccount;
       return TucToast.success($translate.instant('telephony_delete_group_delete_success', { group: groupName }));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.deleting = false;
     });
   };
@@ -63,7 +63,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
       task: fetchTerminationTask(),
     }).then(() => {
       self.loaded = true;
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   }

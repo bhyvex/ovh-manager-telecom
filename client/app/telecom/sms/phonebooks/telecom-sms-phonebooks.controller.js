@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsPhonebooksCtrl', class TelecomSmsPhonebooksCtrl {
     constructor(
       $document, $filter, $q, $scope, $stateParams, $translate, $timeout, $uibModal, $window,
-      OvhApiSms, TucToast, ToastError, SMS_PHONEBOOKS,
+      OvhApiSms, TucToast, TucToastError, SMS_PHONEBOOKS,
     ) {
       this.$document = $document;
       this.$filter = $filter;
@@ -22,7 +22,7 @@ angular
         },
       };
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
       this.constant = { SMS_PHONEBOOKS };
     }
 

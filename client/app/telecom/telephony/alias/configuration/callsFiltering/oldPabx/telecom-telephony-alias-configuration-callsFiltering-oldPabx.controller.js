@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCallsFilteringOldPabxCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, ToastError, telephonyBulk, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCallsFilteringOldPabxCtrl', function ($stateParams, $q, $translate, OvhApiTelephony, TucToastError, telephonyBulk, TucToast) {
   const self = this;
 
   self.fetchStatus = function () {
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
       self.screenStatus.raw = angular.copy(self.screenStatus.modified);
     }).catch((err) => {
       self.screenStatus.modified = angular.copy(self.screenStatus.raw);
-      return new ToastError(err);
+      return new TucToastError(err);
     }).finally(() => {
       self.screenStatus.isLoading = false;
     });
@@ -91,7 +91,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasConfigurationCalls
     return self.fetchStatus().then((result) => {
       self.screenStatus.raw = result.incomingScreenList;
       self.screenStatus.modified = angular.copy(result.incomingScreenList);
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.screenStatus.isLoading = false;
     });
   }

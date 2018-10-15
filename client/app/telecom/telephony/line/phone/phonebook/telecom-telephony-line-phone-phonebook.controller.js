@@ -1,6 +1,6 @@
 angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl', function (
   $document, $filter, $q, $scope, $stateParams, $timeout, $translate, $uibModal, $window,
-  OvhApiTelephony, voipServiceTask, TucToast, ToastError, TELEPHONY_PHONEBOOK,
+  OvhApiTelephony, voipServiceTask, TucToast, TucToastError, TELEPHONY_PHONEBOOK,
 ) {
   const self = this;
 
@@ -92,7 +92,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
         if (error && error.status === 501) {
           return TucToast.error($translate.instant('telephony_phonebook_brand_not_supported'));
         }
-        return new ToastError(error);
+        return new TucToastError(error);
       }).finally(() => {
         self.phonebookToAdd.isAdding = false;
       });
@@ -288,7 +288,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       }).$promise.then(() => {
         TucToast.success($translate.instant('telephony_phonebook_contact_remove_success'));
         return self.refresh();
-      }).catch(error => new ToastError(error)).finally(() => {
+      }).catch(error => new TucToastError(error)).finally(() => {
         self.phonebookContact.isDeleting = false;
       });
   };
@@ -310,7 +310,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
     return $q.all(queries).then(() => {
       self.phonebookContact.selected = {};
       return self.refresh();
-    }).catch(error => new ToastError(error)).finally(() => {
+    }).catch(error => new TucToastError(error)).finally(() => {
       self.phonebookContact.isDeleting = false;
     });
   };
@@ -357,7 +357,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
       self.phonebookContact.raw = phonebookContact;
       self.sortPhonebookContact();
       self.updatePhonebookContactGroups();
-    }).catch(error => new ToastError(error)).finally(() => {
+    }).catch(error => new TucToastError(error)).finally(() => {
       self.phonebookContact.isLoading = false;
     });
   };
@@ -407,7 +407,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhonePhonebookCtrl'
         });
       }
       return null;
-    }).catch(error => new ToastError(error)).finally(() => {
+    }).catch(error => new TucToastError(error)).finally(() => {
       self.phonebook.isLoading = false;
     });
   }

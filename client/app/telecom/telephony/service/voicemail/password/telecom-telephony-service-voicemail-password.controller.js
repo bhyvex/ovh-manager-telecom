@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswordCtrl', function ($state, $stateParams, $translate, $timeout, OvhApiTelephony, ToastError, telephonyBulk, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswordCtrl', function ($state, $stateParams, $translate, $timeout, OvhApiTelephony, TucToastError, telephonyBulk, TucToast) {
   const self = this;
 
   function init() {
@@ -14,7 +14,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
       serviceName: $stateParams.serviceName,
     }).$promise.then((options) => {
       self.options = options;
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   }
@@ -46,7 +46,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailPasswor
         self.reset();
         form.$setPristine();
       }, 3000);
-    }).catch(() => new ToastError($translate.instant('telephony_line_answer_voicemail_password_change_error'))).finally(() => {
+    }).catch(() => new TucToastError($translate.instant('telephony_line_answer_voicemail_password_change_error'))).finally(() => {
       self.submitting = false;
     });
   };

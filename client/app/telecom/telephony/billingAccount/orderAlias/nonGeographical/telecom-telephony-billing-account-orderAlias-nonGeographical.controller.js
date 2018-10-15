@@ -1,7 +1,7 @@
 angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographicalCtrl', function (
   $q, $translate, $stateParams,
   OvhApiTelephony, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService,
-  TucToast, ToastError, TELEPHONY_NUMBER_OFFER,
+  TucToast, TucToastError, TELEPHONY_NUMBER_OFFER,
 ) {
   const self = this;
 
@@ -32,7 +32,7 @@ angular.module('managerApp').controller('TelecomTelephonyAliasOrderNonGeographic
         return data;
       },
       (err) => {
-        ToastError($translate.instant('telephony_order_specific_numbers_error'));
+        TucToastError($translate.instant('telephony_order_specific_numbers_error'));
         return $q.reject(err);
       },
     ).finally(() => {

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefaultCtrl', function ($scope, $stateParams, $q, $timeout, $filter, $translate, ToastError, OvhApiTelephony, telephonyBulk, TucToast) {
+angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefaultCtrl', function ($scope, $stateParams, $q, $timeout, $filter, $translate, TucToastError, OvhApiTelephony, telephonyBulk, TucToast) {
   const self = this;
 
   function fetchLines() {
@@ -33,7 +33,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
       self.numbers = result.lines.concat(result.fax);
       self.options = result.options;
       self.defaultVoicemail = self.options.defaultVoicemail;
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.loading = false;
     });
   }
@@ -52,7 +52,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceVoicemailDefault
     ]).then(() => {
       self.defaultVoicemail = self.options.defaultVoicemail;
       self.success = true;
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.saving = false;
     });
   };

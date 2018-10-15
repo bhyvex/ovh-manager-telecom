@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('XdslAccessPortResetCtrl', function ($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, ToastError) {
+angular.module('managerApp').controller('XdslAccessPortResetCtrl', function ($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, TucToastError) {
   this.resetDslam = function () {
     if (_.isEmpty($stateParams.serviceName) || _.isEmpty($stateParams.number)) {
       TucToast.error($translate.instant('xdsl_access_dslam_reset_an_error_ocurred'));
@@ -17,7 +17,7 @@ angular.module('managerApp').controller('XdslAccessPortResetCtrl', function ($st
 
         TucToast.success($translate.instant('xdsl_access_dslam_reset_success'));
       },
-      err => new ToastError(err, 'xdsl_access_dslam_reset_an_error_ocurred'),
+      err => new TucToastError(err, 'xdsl_access_dslam_reset_an_error_ocurred'),
     );
   };
 });

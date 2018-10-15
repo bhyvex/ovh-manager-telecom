@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', function ($q, $scope, $stateParams, $translate, IpAddress, TelephonyMediator, OvhApiTelephony, OvhApiOrder, TucToast, ToastError, TELEPHONY_RMA) {
+angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', function ($q, $scope, $stateParams, $translate, IpAddress, TelephonyMediator, OvhApiTelephony, OvhApiOrder, TucToast, TucToastError, TELEPHONY_RMA) {
   const self = this;
 
   self.pdfBaseUrl = TELEPHONY_RMA.pdfBaseUrl;
@@ -128,7 +128,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
             self.isStepLoading = true;
             fetchMerchandiseAvailable().then((result) => {
               self.merchandise = result;
-            }).catch(err => new ToastError(err)).finally(() => {
+            }).catch(err => new TucToastError(err)).finally(() => {
               self.isStepLoading = false;
             });
           });
@@ -141,7 +141,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
           }
         });
       })
-      .catch(err => new ToastError(err))
+      .catch(err => new TucToastError(err))
       .finally(() => {
         self.isLoading = false;
       });
@@ -153,13 +153,13 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
             self.isStepLoading = true;
             fetchMerchandiseAvailable().then((result) => {
               self.merchandise = result;
-            }).catch(err => new ToastError(err)).finally(() => {
+            }).catch(err => new TucToastError(err)).finally(() => {
               self.isStepLoading = false;
             });
           } else if (self.line && self.line.getPublicOffer) {
             fetchOfferPhones(self.line.getPublicOffer.name).then((offers) => {
               self.phoneOffers = offers;
-            }).catch(err => new ToastError(err)).finally(() => {
+            }).catch(err => new TucToastError(err)).finally(() => {
               self.isStepLoading = false;
             });
           }
@@ -169,7 +169,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
           self.order.isContractsAccepted = false;
           fetchOrder(self.order).then((result) => {
             self.order.summary = result;
-          }).catch(err => new ToastError(err)).finally(() => {
+          }).catch(err => new TucToastError(err)).finally(() => {
             self.isStepLoading = false;
           });
           break;
@@ -191,7 +191,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
         self.rmas = rmas;
         self.returnSuccess = true;
         self.orderStep = 'hardware'; // reset form
-      }).catch(err => new ToastError(err)).finally(() => {
+      }).catch(err => new TucToastError(err)).finally(() => {
         self.isSubmiting = false;
       });
   };
@@ -216,7 +216,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
       self.order.success = true;
       self.order.orderURL = order.url;
       self.orderStep = 'hardware'; // reset form
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isSubmiting = false;
     });
   };
@@ -242,7 +242,7 @@ angular.module('managerApp').controller('TelecomTelephonyLinePhoneOrderCtrl', fu
         self.rmas = rmas;
         self.order.success = true;
         self.orderStep = 'hardware'; // reset form
-      }).catch(err => new ToastError(err)).finally(() => {
+      }).catch(err => new TucToastError(err)).finally(() => {
         self.isSubmiting = false;
       });
   };

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('XdslAccessIpv6Ctrl', function ($stateParams, $scope, $translate, OvhApiXdslIps, TucToast, ToastError) {
+angular.module('managerApp').controller('XdslAccessIpv6Ctrl', function ($stateParams, $scope, $translate, OvhApiXdslIps, TucToast, TucToastError) {
   this.submitIp = function () {
     if (_.isEmpty($stateParams.serviceName)) {
       TucToast.error($translate.instant('xdsl_access_ipv6_an_error_ocurred'));
@@ -19,7 +19,7 @@ angular.module('managerApp').controller('XdslAccessIpv6Ctrl', function ($statePa
       },
       (err) => {
         $scope.access.xdsl.ipv6Enabled = !$scope.access.xdsl.ipv6Enabled;
-        return new ToastError(err, 'xdsl_access_ipv6_an_error_ocurred');
+        return new TucToastError(err, 'xdsl_access_ipv6_an_error_ocurred');
       },
     );
   };

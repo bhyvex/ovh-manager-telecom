@@ -1,6 +1,6 @@
 angular.module('managerApp').controller('PackMoveCtrl', function (
   $scope, $compile, $state, $timeout, $translate, $uibModal, $filter, $q, $stateParams,
-  REDIRECT_URLS, OvhApiPackXdslMove, Poller, TucToast, ToastError,
+  REDIRECT_URLS, OvhApiPackXdslMove, Poller, TucToast, TucToastError,
   OvhApiPackXdslTask, OvhApiPackXdsl, OvhApiXdsl, uiCalendarConfig, validator,
 ) {
   const self = this;
@@ -318,7 +318,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
           self.operationAlreadyPending = true;
         }
       });
-    }, err => new ToastError(err));
+    }, err => new TucToastError(err));
   }
 
   /**
@@ -330,7 +330,7 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
       packId: $stateParams.packName,
     }).$promise.then((data) => {
       self.offer.current.isLegacy = data.capabilities.isLegacyOffer;
-    }, err => new ToastError(err));
+    }, err => new TucToastError(err));
   }
 
   /**
@@ -342,13 +342,13 @@ angular.module('managerApp').controller('PackMoveCtrl', function (
       OvhApiPackXdsl.Aapi().get({ packId: $stateParams.packName }, null).$promise.then((pack) => {
         self.packAdress.current = _.head(pack.services);
         return self.packAdress.current ? self.packAdress.current.accessName : null;
-      }, err => new ToastError(err)),
+      }, err => new TucToastError(err)),
       OvhApiPackXdsl.Aapi()
         .getLines({ packId: $stateParams.packName }, null).$promise.then((lines) => {
           const currentLine = _.head(lines);
           self.packAdress.lineNumber = currentLine.number;
           self.packAdress.portability = currentLine.portability;
-        }, err => new ToastError(err)),
+        }, err => new TucToastError(err)),
     ]).finally(() => {
       self.packAdress.loading = false;
     });

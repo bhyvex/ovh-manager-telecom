@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationLinesGroup', function ($scope, $stateParams, $q, $translate, TelephonyMediator, TelephonySidebar, OvhApiTelephony, TucToast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministrationLinesGroup', function ($scope, $stateParams, $q, $translate, TelephonyMediator, TelephonySidebar, OvhApiTelephony, TucToast, TucToastError) {
   const self = this;
 
   this.$onInit = function () {
@@ -31,7 +31,7 @@ angular.module('managerApp').controller('TelecomTelephonyBillingAccountAdministr
         .map(billingAccount => ({ id: billingAccount }));
       self.numberCount = result.numberCount;
       self.lineCount = result.lineCount;
-    }, err => new ToastError(err));
+    }, err => new TucToastError(err));
   };
 
   self.fetchBillingAccountDetails = function (billingAccount) {

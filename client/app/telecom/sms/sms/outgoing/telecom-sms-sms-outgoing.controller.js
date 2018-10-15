@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSmsOutgoingCtrl', class TelecomSmsSmsOutgoingCtrl {
     constructor(
       $scope, $stateParams, $q, $filter, $timeout, $window, $uibModal, $translate,
-      OvhApiSms, OvhApiMe, debounce, TucToast, ToastError,
+      OvhApiSms, OvhApiMe, debounce, TucToast, TucToastError,
     ) {
       this.$scope = $scope;
       this.$stateParams = $stateParams;
@@ -21,7 +21,7 @@ angular
       };
       this.debounce = debounce;
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
     }
 
     $onInit() {
@@ -52,7 +52,7 @@ angular
         this.outgoing.raw = angular.copy(results.outgoing);
         this.serviceInfos = results.serviceInfos;
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.outgoing.isLoading = false;
       });
@@ -180,7 +180,7 @@ angular
         this.outgoing.selected = {};
         return this.refresh();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.outgoing.isDeleting = false;
       });
@@ -274,7 +274,7 @@ angular
       return this.fetchOutgoingSms().then((outgoing) => {
         this.outgoing.raw = angular.copy(outgoing);
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.outgoing.isLoading = false;
       });

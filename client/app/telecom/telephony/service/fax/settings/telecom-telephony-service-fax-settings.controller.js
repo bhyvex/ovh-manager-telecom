@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl', function ($q, $stateParams, $translate, $timeout, OvhApiTelephony, TucToast, ToastError, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl', function ($q, $stateParams, $translate, $timeout, OvhApiTelephony, TucToast, TucToastError, telephonyBulk) {
   const self = this;
 
   /* ===============================
@@ -96,7 +96,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxSettingsCtrl'
       self.enums = results.enums;
     }).catch((err) => {
       self.settings = null;
-      return new ToastError(err);
+      return new TucToastError(err);
     }).finally(() => {
       self.loading.init = false;
     });

@@ -9,7 +9,7 @@ angular
       $timeout,
       OvhApiSms,
       TucToast,
-      ToastError,
+      TucToastError,
     ) {
       this.$q = $q;
       this.$stateParams = $stateParams;
@@ -21,7 +21,7 @@ angular
         smsSenders: OvhApiSms.Senders().v6(),
       };
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
     }
 
     $onInit() {
@@ -69,7 +69,7 @@ angular
           }),
         );
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       })
         .finally(() => {
           this.loading.init = false;
@@ -111,7 +111,7 @@ angular
         this.TucToast.success(this.$translate.instant('sms_senders_add_sender_added'));
         return this.$state.go('telecom.sms.senders');
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.loading.adding = false;
       });
@@ -130,7 +130,7 @@ angular
         description: this.sender.description,
         reason: this.sender.reason,
       }).$promise.then(() => this.$state.go('telecom.sms.senders')).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.loading.adding = false;
       });
@@ -168,7 +168,7 @@ angular
         this.senders.availableForValidation.selected = {};
         return this.$state.go('telecom.sms.senders');
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.loading.adding = false;
       });

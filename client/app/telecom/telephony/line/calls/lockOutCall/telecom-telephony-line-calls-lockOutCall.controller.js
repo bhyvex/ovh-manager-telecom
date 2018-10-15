@@ -1,6 +1,6 @@
 angular.module('managerApp').controller(
   'TelecomTelephonyLineCallsLockOutCallCtrl',
-  function ($q, $stateParams, $translate, TucToast, ToastError, OvhApiTelephony, telephonyBulk) {
+  function ($q, $stateParams, $translate, TucToast, TucToastError, OvhApiTelephony, telephonyBulk) {
     const self = this;
 
     self.isPin = function (val) {
@@ -29,7 +29,7 @@ angular.module('managerApp').controller(
           self.saved = angular.copy(self.options);
           TucToast.success($translate.instant('telephony_line_actions_line_calls_out_lock_call_save_success'));
         },
-        () => new ToastError($translate.instant('telephony_line_actions_line_calls_out_lock_call_save_error')),
+        () => new TucToastError($translate.instant('telephony_line_actions_line_calls_out_lock_call_save_error')),
       ).finally(() => {
         self.loading.save = false;
       });
@@ -52,7 +52,7 @@ angular.module('managerApp').controller(
           self.options = _.pick(options, ['lockOutCallPassword', 'lockOutCall']);
           self.saved = angular.copy(self.options);
         },
-        () => new ToastError($translate.instant('telephony_line_actions_line_calls_out_lock_call_load_error')),
+        () => new TucToastError($translate.instant('telephony_line_actions_line_calls_out_lock_call_load_error')),
       ).finally(() => {
         self.loading.init = false;
       });

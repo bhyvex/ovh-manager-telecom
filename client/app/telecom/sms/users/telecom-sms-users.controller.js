@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsUsersCtrl', class TelecomSmsUsersCtrl {
     constructor(
       $stateParams, $q, $filter, $uibModal, $translate,
-      OvhApiSms, SmsMediator, TucToast, ToastError,
+      OvhApiSms, SmsMediator, TucToast, TucToastError,
     ) {
       this.$filter = $filter;
       this.$q = $q;
@@ -16,7 +16,7 @@ angular
       };
       this.SmsMediator = SmsMediator;
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
     }
 
     $onInit() {
@@ -45,7 +45,7 @@ angular
         this.users.raw = angular.copy(users);
         this.sortUsers();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.users.isLoading = false;
       });
@@ -122,7 +122,7 @@ angular
         serviceName: this.$stateParams.serviceName,
       }).$promise.then((service) => {
         this.service = service;
-      }).catch(error => this.ToastError(error))).catch((error) => {
+      }).catch(error => this.TucToastError(error))).catch((error) => {
         if (error && error.type === 'API') {
           this.TucToast.error(this.$translate.instant('sms_users_templates_update_ko', { error: _.get(error, 'msg.data.message') }));
         }

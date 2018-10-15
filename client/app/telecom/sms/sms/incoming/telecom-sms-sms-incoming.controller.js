@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSmsIncomingCtrl', class TelecomSmsSmsIncomingCtrl {
     constructor(
       $filter, $q, $scope, $stateParams, $translate, $timeout, $uibModal, $window,
-      OvhApiSms, OvhApiMe, TucToast, ToastError,
+      OvhApiSms, OvhApiMe, TucToast, TucToastError,
     ) {
       this.$filter = $filter;
       this.$q = $q;
@@ -21,7 +21,7 @@ angular
         },
       };
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
     }
 
     $onInit() {
@@ -62,7 +62,7 @@ angular
         this.serviceInfos = results.serviceInfos;
         this.applySorting();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.incoming.isLoading = false;
       });
@@ -161,7 +161,7 @@ angular
         this.incoming.selected = {};
         return this.refresh();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.incoming.isDeleting = false;
       });

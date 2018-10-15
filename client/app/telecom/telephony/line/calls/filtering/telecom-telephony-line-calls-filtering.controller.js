@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl', function ($stateParams, $q, $timeout, $translate, TucToast, ToastError, OvhApiTelephony, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl', function ($stateParams, $q, $timeout, $translate, TucToast, TucToastError, OvhApiTelephony, telephonyBulk) {
   const self = this;
 
   self.fetchScreenLists = function () {
@@ -82,7 +82,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
     };
     self.serviceName = $stateParams.serviceName;
     self.isInitializing = true;
-    return self.refresh().catch(err => new ToastError(err)).finally(() => {
+    return self.refresh().catch(err => new TucToastError(err)).finally(() => {
       self.isInitializing = false;
     });
   }
@@ -161,7 +161,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
       self.screen.raw = angular.copy(self.screen.modified);
     }).catch((err) => {
       self.screen.modified = angular.copy(self.screen.raw);
-      return new ToastError(err);
+      return new TucToastError(err);
     }).finally(() => {
       self.screen.isLoading = false;
       self.screen.isIncomingLoading = false;
@@ -182,7 +182,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
         _.assign(self.options.raw, _.pick(self.options.modified, opt));
         $timeout(angular.noop, 500);
       })
-      .catch(err => new ToastError(err))
+      .catch(err => new TucToastError(err))
       .finally(() => {
         self.options.isUpdating = null;
       });
@@ -198,7 +198,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineCallsFilteringCtrl'
       self.screen.modified = angular.copy(self.screen.raw);
       self.options.raw = result.options;
       self.options.modified = angular.copy(result.options);
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   };

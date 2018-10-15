@@ -3,7 +3,7 @@ angular
   .controller('TelecomSmsSendersBlacklistedCtrl', class TelecomSmsSendersBlacklistedCtrl {
     constructor(
       $stateParams, $q, $filter, $timeout, $uibModal, $translate,
-      OvhApiSms, TucToast, ToastError,
+      OvhApiSms, TucToast, TucToastError,
     ) {
       this.$stateParams = $stateParams;
       this.$q = $q;
@@ -17,7 +17,7 @@ angular
         },
       };
       this.TucToast = TucToast;
-      this.ToastError = ToastError;
+      this.TucToastError = TucToastError;
     }
 
     $onInit() {
@@ -45,7 +45,7 @@ angular
         this.blacklists.raw = angular.copy(blacklists);
         this.sortBlacklists();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.blacklists.isLoading = false;
       });
@@ -121,7 +121,7 @@ angular
         this.blacklists.selected = {};
         return this.refresh();
       }).catch((err) => {
-        this.ToastError(err);
+        this.TucToastError(err);
       }).finally(() => {
         this.blacklists.isDeleting = false;
       });

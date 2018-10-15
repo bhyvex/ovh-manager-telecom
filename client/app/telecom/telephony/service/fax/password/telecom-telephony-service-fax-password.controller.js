@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl', function ($stateParams, $translate, $timeout, TelephonyMediator, OvhApiTelephony, TucToast, ToastError, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl', function ($stateParams, $translate, $timeout, TelephonyMediator, OvhApiTelephony, TucToast, TucToastError, telephonyBulk) {
   const self = this;
 
   /*= ==============================
@@ -53,7 +53,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceFaxPasswordCtrl'
     self.loading.init = true;
     return TelephonyMediator.getGroup($stateParams.billingAccount).then((group) => {
       self.fax = group.getFax($stateParams.serviceName);
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.loading.init = false;
     });
   }

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('XdslAccessProfileCtrl', function ($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, ToastError) {
+angular.module('managerApp').controller('XdslAccessProfileCtrl', function ($stateParams, $scope, $translate, OvhApiXdslLinesDslamPort, TucToast, TucToastError) {
   const self = this;
 
   self.loader = true;
@@ -22,7 +22,7 @@ angular.module('managerApp').controller('XdslAccessProfileCtrl', function ($stat
         }
 
         TucToast.success($translate.instant('xdsl_access_profile_doing'));
-      }, err => new ToastError(err, 'xdsl_access_dslam_an_error_ocurred'),
+      }, err => new TucToastError(err, 'xdsl_access_dslam_an_error_ocurred'),
     );
   };
 
@@ -39,7 +39,7 @@ angular.module('managerApp').controller('XdslAccessProfileCtrl', function ($stat
         self.currentProfileTmp = self.currentProfile;
       }, (err) => {
         self.loader = false;
-        return new ToastError(err, 'xdsl_access_dslam_an_error_ocurred');
+        return new TucToastError(err, 'xdsl_access_dslam_an_error_ocurred');
       },
     );
   }

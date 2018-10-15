@@ -1,5 +1,5 @@
 angular.module('managerApp')
-  .controller('TelecomTelephonyAliasOrderInternationalCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiTelephonyNumber, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, ToastError, TELEPHONY_NUMBER_OFFER) {
+  .controller('TelecomTelephonyAliasOrderInternationalCtrl', function ($q, $translate, $stateParams, OvhApiTelephony, OvhApiTelephonyNumber, OvhApiOrder, TelecomTelephonyBillingAccountOrderAliasService, TucToast, TucToastError, TELEPHONY_NUMBER_OFFER) {
     const self = this;
 
     /**
@@ -29,7 +29,7 @@ angular.module('managerApp')
             return data;
           },
           (err) => {
-            ToastError($translate.instant('telephony_order_specific_numbers_error'));
+            TucToastError($translate.instant('telephony_order_specific_numbers_error'));
             return $q.reject(err);
           },
         );
@@ -219,7 +219,7 @@ angular.module('managerApp')
               });
             },
             (err) => {
-              ToastError($translate.instant('telephony_order_international_countries_error'));
+              TucToastError($translate.instant('telephony_order_international_countries_error'));
               return $q.reject(err);
             },
           ),

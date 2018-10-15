@@ -1,4 +1,4 @@
-angular.module('managerApp').service('ToastError', ($translate, $q, TucToast) => function (err, translationId) {
+export default /* @ngInject */ ($translate, $q, TucToast) => function (err, translationId) {
   const output = [$translate.instant(translationId || 'an_error_occured')];
 
   if (err.status) {
@@ -15,4 +15,4 @@ angular.module('managerApp').service('ToastError', ($translate, $q, TucToast) =>
 
   TucToast.error(output.join(' '));
   return $q.reject(err);
-});
+};

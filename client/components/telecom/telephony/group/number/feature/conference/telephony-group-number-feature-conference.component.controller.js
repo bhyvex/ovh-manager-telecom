@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', function ($q, $translate, TelephonyMediator, telephonyGroupNumberConferencePolling, TucToast, ToastError) {
+angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', function ($q, $translate, TelephonyMediator, telephonyGroupNumberConferencePolling, TucToast, TucToastError) {
   const self = this;
 
   const settingsAttributes = ['language', 'pin', 'announceFile',
@@ -79,7 +79,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
     self.loading.webAccess = true;
     return self.numberCtrl.number.feature
       .generateWebAccess()
-      .catch(err => new ToastError(err))
+      .catch(err => new TucToastError(err))
       .finally(() => {
         self.loading.webAccess = false;
       });
@@ -171,7 +171,7 @@ angular.module('managerApp').controller('TelephonyNumberConferenceCtrl', functio
     const found = _.some(validExtensions, ext => _.endsWith(fileName.toLowerCase(), ext));
 
     if (!found) {
-      return new ToastError($translate.instant('telephony_number_feature_conference_announcement_file_invalid'));
+      return new TucToastError($translate.instant('telephony_number_feature_conference_announcement_file_invalid'));
     }
 
     self.loading.announceUpload = true;

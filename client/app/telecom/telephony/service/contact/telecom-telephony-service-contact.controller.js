@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', function ($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToast, ToastError, OvhApiXdsl, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', function ($state, $stateParams, $q, $timeout, $translate, OvhApiTelephony, TucToast, TucToastError, OvhApiXdsl, telephonyBulk) {
   const self = this;
 
   function buildWayInfo(directory) {
@@ -67,7 +67,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
 
       self.directoryProperties = _.get(res.infos, "models['telephony.DirectoryInfo'].properties");
       return null;
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   }
@@ -115,7 +115,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
       self.directory = angular.copy(self.directoryForm);
       self.isEditing = false;
       TucToast.success($translate.instant('telephony_service_contact_success'));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isUpdating = false;
     });
   };
@@ -248,7 +248,7 @@ angular.module('managerApp').controller('TelecomTelephonyServiceContactCtrl', fu
             self.directoryCodes = null;
             model.$setValidity('siret', false);
           }
-        }).catch(err => new ToastError(err));
+        }).catch(err => new TucToastError(err));
       }
     };
   }());

@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($stateParams, $translate, $scope, $q, URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS, OvhApiOverTheBox, ToastError, TucToast, IpAddress) {
+angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($stateParams, $translate, $scope, $q, URLS, OVER_THE_BOX, OVERTHEBOX_REMOTE_STATUS, OvhApiOverTheBox, TucToastError, TucToast, IpAddress) {
   const self = this;
 
   this.filter = {
@@ -35,7 +35,7 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
         },
         (err) => {
           self.remotes = [];
-          return new ToastError(err);
+          return new TucToastError(err);
         },
       ).finally(() => {
         self.loading = false;
@@ -48,7 +48,7 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
         (remotes) => {
           self.remotes = remotes;
         },
-        ToastError,
+        TucToastError,
         (remotes) => {
           self.remotes = remotes;
         },
@@ -152,7 +152,7 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
       null,
     ).$promise.then(() => self.reloadRemote(remote), (err) => {
       _.set(remote, 'busy', false);
-      return new ToastError(err);
+      return new TucToastError(err);
     });
   };
 
@@ -175,7 +175,7 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
       } else {
         TucToast.error($translate.instant('overTheBox_remote_authorized_failed', { port: reloadedRemote.exposedPort }));
       }
-    }, ToastError).finally(() => {
+    }, TucToastError).finally(() => {
       _.set(remote, 'busy', false);
     });
   };
@@ -192,7 +192,7 @@ angular.module('managerApp').controller('OverTheBoxRemoteCtrl', function ($state
     }, null).$promise.then(() => {
       TucToast.success($translate.instant('overTheBox_remote_element_deleted'));
       self.reloadRemote(remote);
-    }, ToastError).finally(() => {
+    }, TucToastError).finally(() => {
       _.set(remote, 'busy', false);
     });
   };

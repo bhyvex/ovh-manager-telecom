@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', function ($q, $stateParams, $translate, OvhApiPackXdslVoipLine, OvhApiTelephony, TelephonyMediator, TucToast, ToastError, telephonyBulk) {
+angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', function ($q, $stateParams, $translate, OvhApiPackXdslVoipLine, OvhApiTelephony, TelephonyMediator, TucToast, TucToastError, telephonyBulk) {
   const self = this;
 
   function init() {
@@ -13,7 +13,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
       }).then(() => self.line.isIncludedInXdslPack().then((inPack) => {
         self.isInXdslPack = inPack;
       }))
-      .catch(err => new ToastError(err))
+      .catch(err => new TucToastError(err))
       .finally(() => {
         self.isLoading = false;
       });
@@ -27,7 +27,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     }, {}).$promise.then(() => self.line.getConvertionTask()).then((task) => {
       self.task = task;
       TucToast.success($translate.instant('telephony_line_convert_convert_success'));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isConverting = false;
     });
   };
@@ -40,7 +40,7 @@ angular.module('managerApp').controller('TelecomTelephonyLineConvertCtrl', funct
     }, {}).$promise.then(() => self.line.getConvertionTask()).then((task) => {
       self.task = task;
       TucToast.success($translate.instant('telephony_line_convert_cancel_success'));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isCancelling = false;
     });
   };

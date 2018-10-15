@@ -1,4 +1,4 @@
-angular.module('managerApp').controller('TelecomTelephonyCallsFilteringAddHelperCtrl', function ($stateParams, $translate, $q, $uibModalInstance, param, TucToast, ToastError) {
+angular.module('managerApp').controller('TelecomTelephonyCallsFilteringAddHelperCtrl', function ($stateParams, $translate, $q, $uibModalInstance, param, TucToast, TucToastError) {
   const self = this;
 
   function init() {
@@ -44,7 +44,7 @@ angular.module('managerApp').controller('TelecomTelephonyCallsFilteringAddHelper
     }))).then(() => {
       $uibModalInstance.close();
       TucToast.success($translate.instant('telephony_calls_filtering_add_plural_success'));
-    }).catch(err => new ToastError(err)).finally(() => {
+    }).catch(err => new TucToastError(err)).finally(() => {
       self.isLoading = false;
     });
   };
