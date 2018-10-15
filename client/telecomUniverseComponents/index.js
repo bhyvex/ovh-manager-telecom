@@ -1,5 +1,9 @@
 import angular from 'angular';
 
+import tucSuccessDrawingCheck from './successDrawingCheck';
+
 export default angular
-  .module('telecomUniverseComponents', [])
+  .module('telecomUniverseComponents', [
+    tucSuccessDrawingCheck,
+  ])
   .name;
