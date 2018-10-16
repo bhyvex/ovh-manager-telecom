@@ -1,8 +1,8 @@
-angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($stateParams, $translate, Toast, validator, PackXdslModemDhcpBdhcpObject, OvhApiXdsl, $q, PackXdslModemMediator) {
+angular.module('managerApp').controller('XdslModemDhcpBdhcpCtrl', function ($stateParams, $translate, Toast, validator, PackXdslModemDhcpBdhcpObject, OvhApiXdsl, $q, TucPackXdslModemMediator) {
   const self = this;
 
   this.validator = validator;
-  this.mediator = PackXdslModemMediator;
+  this.mediator = TucPackXdslModemMediator;
 
   /**
    * submit / unsubmit with keys

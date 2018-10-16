@@ -1,4 +1,4 @@
-angular.module('managerApp').service('TelecomMediator', function ($q, $translate, OvhApiMeVipStatus, PackMediator, TelephonyMediator, SmsMediator, FaxMediator, OverTheBoxMediator, Toast) {
+angular.module('managerApp').service('TelecomMediator', function ($q, $translate, OvhApiMeVipStatus, TucPackMediator, TelephonyMediator, SmsMediator, FaxMediator, OverTheBoxMediator, Toast) {
   const self = this;
 
   self.isVip = false;
@@ -48,7 +48,7 @@ angular.module('managerApp').service('TelecomMediator', function ($q, $translate
 
     // get service count for telecom
     $q.all({
-      pack: PackMediator.getCount().catch(handleCountError),
+      pack: TucPackMediator.getCount().catch(handleCountError),
       telephony: TelephonyMediator.getCount().catch(handleCountError),
       sms: SmsMediator.getCount().catch(handleCountError),
       freefax: FaxMediator.getCount().catch(handleCountError),

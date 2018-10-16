@@ -1,8 +1,8 @@
-angular.module('managerApp').controller('XdslModemPortsCtrl', function ($stateParams, $translate, $scope, OvhApiXdslModemPort, Toast, PackXdslModemPortObject, validator, PackXdslModemMediator) {
+angular.module('managerApp').controller('XdslModemPortsCtrl', function ($stateParams, $translate, $scope, OvhApiXdslModemPort, Toast, PackXdslModemPortObject, validator, TucPackXdslModemMediator) {
   const self = this;
   self.loader = true;
   this.validator = validator;
-  this.mediator = PackXdslModemMediator;
+  this.mediator = TucPackXdslModemMediator;
 
   this.protocol = ['TCP', 'UDP'];
 
