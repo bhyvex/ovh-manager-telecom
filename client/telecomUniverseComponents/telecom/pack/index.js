@@ -1,5 +1,4 @@
 import angular from 'angular';
-import translate from 'angular-translate';
 import 'ovh-angular-swimming-poll';
 import 'ovh-api-services';
 
@@ -9,7 +8,6 @@ import TucPackXdslModemMediator from './xdsl/modem/pack-xdsl-modem-mediator.serv
 
 export default angular
   .module('tucTelecomPack', [
-    translate,
     'ovh-angular-swimming-poll',
     'ovh-api-services',
   ])

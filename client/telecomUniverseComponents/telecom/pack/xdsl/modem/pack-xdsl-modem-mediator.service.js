@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-export default /* @ngInject */ function ($rootScope, $q, $translate, OvhApiXdsl, Poller) {
+export default /* @ngInject */ function ($rootScope, $q, OvhApiXdsl, Poller) {
   const self = this;
 
   this.capabilities = {
