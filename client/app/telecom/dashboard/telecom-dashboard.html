@@ -1,5 +1,6 @@
 <a
-    data-ng-href="https://summit.ovh.com/index.php/{{:: TelecomDashboardCtrl.localeForSummitBanner }}/subscription"
+    data-ng-if="TelecomDashboardCtrl.shouldDisplayBanner"
+    data-ng-href="{{ TelecomDashboardCtrl.localeForSummitBanner === 'fr' ? 'https://blog.ovh.com/fr/blog/ovh-summit-2018-les-grandes-annonces' : 'https://blog.ovh.com/fr/blog/ovh-summit-2018-new-products-annoucements/'}}"
     target="_blank"
     rel="noopener"
     title="{{:: 'configuration_summit_banner_alt' | translate }}">
